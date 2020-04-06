@@ -2,6 +2,8 @@ import java.util.*;
 import sedgewick.StdDraw;
 import java.awt.Color;
 public class Soccer {
+	private Player player1;
+	private Player player2;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -22,8 +24,26 @@ public class Soccer {
 				while(true) {
 					if(StdDraw.mousePressed()) {
 						StdDraw.show(0);
+						break;
 					}
 				}
+				StdDraw.setScale(-1,1);
+				Player player1 = new Player(0, 0.8, 0); //Not calling "Player" causes static/non static error
+				Player player2 = new Player(0, 0.5, 1);
+				while(true) {
+					StdDraw.clear();
+					StdDraw.picture(0,0,"background.png");
+					StdDraw.setPenColor();
+					StdDraw.filledRectangle(0,-0.95,0.01,.2);
+					StdDraw.filledRectangle(-1.0, 0.3, 0.1, 0.7);
+					StdDraw.filledRectangle(1.0,0.3,0.1,0.7);
+					player1.draw();
+					player2.draw();
+					player1.move();
+					player2.move();
+					StdDraw.show(1);
+				}
+				
 
 	}
 }
