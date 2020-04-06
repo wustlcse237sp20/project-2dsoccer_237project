@@ -4,10 +4,6 @@ import java.awt.Color;
 public class Soccer {
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
-		StdDraw.setCanvasSize(1364,768);
-		StdDraw.picture(0.5,0.5,"background.png");	
-=======
 		// TODO Auto-generated method stub
 				StdDraw.setCanvasSize(1364,768);
 				StdDraw.setPenColor(Color.black);
@@ -17,13 +13,14 @@ public class Soccer {
 				StdDraw.text(0.5, 0.4, "Right Click to Continue");
 				StdDraw.show(0);
 				StdDraw.picture(0.5,0.5,"background.png");
+				StdDraw.setPenColor();
+				StdDraw.filledRectangle(.5,.05,.005,.1);
 				while(true) {
 					if(StdDraw.mousePressed()) {
 						StdDraw.show(0);
 					}
 				}
 
-			}
->>>>>>> branch 'dev' of https://github.com/wustlcse237sp20/project-2dsoccer_237project.git
 	}
+}
 
