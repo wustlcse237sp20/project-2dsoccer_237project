@@ -15,12 +15,6 @@ public class Soccer {
 				StdDraw.text(0.5, 0.4, "Right Click to Continue");
 				StdDraw.show(0);
 				StdDraw.picture(0.5,0.5,"background.png");
-				StdDraw.setPenColor();
-//				StdDraw.filledRectangle(.5,.05,.005,.1);
-//				StdDraw.line(0.02, 0.5, 0.2, 0.5);
-//				StdDraw.line(0.8, 0.5, 0.98, 0.5);
-//				StdDraw.line(0.02, 0, 0.02, 0.5);
-//				StdDraw.line(0.98, 0, 0.98, 0.5);
 				while(true) {
 					if(StdDraw.mousePressed()) {
 						StdDraw.show(0);
@@ -33,22 +27,31 @@ public class Soccer {
 				while(true) {
 					StdDraw.clear();
 					StdDraw.picture(0,0,"background.png");
-					StdDraw.setPenColor();
 					StdDraw.filledRectangle(0,-0.95,0.01,.2);
-					StdDraw.filledRectangle(-1.0, 0.3, 0.1, 0.7);
-					StdDraw.filledRectangle(1.0,0.3,0.1,0.7);
+					StdDraw.filledRectangle(-1.0, 0.4, 0.1, 0.8); //creating the goals
+					StdDraw.filledRectangle(1.0,0.4,0.1,0.8);
 					player1.draw();
 					player2.draw();
 					player1.move();
 					player2.move();
-					StdDraw.show(1);
+					StdDraw.show(10);
+					//not taking gravity into effect when on the ground
 					if(player1.getPosY()>-0.95) {
 						player1.gravity();
 					}
+					//stopping the player's vertical movement when on the ground
+					else if(player1.getPosY()<-0.95) {
+						player1.velocityY = 0;
+					}
+					//same thing with player 2
 					if(player2.getPosY()>-0.95) {
 						player2.gravity();
+					}
+					else if(player2.getPosY()<-0.95) {
+						player2.velocityY = 0;
 					}
 				}
 	}
 }
+
 
