@@ -42,9 +42,13 @@ public class Soccer {
 					player1.move();
 					player2.move();
 					StdDraw.show(1);
+					if(player1.getPosY()>-0.95) {
+						player1.gravity();
+					}
+					if(player2.getPosY()>-0.95) {
+						player2.gravity();
+					}
 				}
-				
-
 	}
 }
 
