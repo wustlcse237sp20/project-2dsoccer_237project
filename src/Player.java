@@ -4,7 +4,7 @@ import sedgewick.ArcadeKeys;
 import sedgewick.StdDraw;
 
 public class Player {
-	
+	//
 	private double posX;
 	private double posY; 
 	private final double startPosX;
