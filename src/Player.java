@@ -44,13 +44,19 @@ public class Player {
 			else if ((ArcadeKeys.isKeyPressed(0, 3))) {
 				this.posX += 0.05;
 			}
+			else if ((ArcadeKeys.isKeyPressed(0, 0))) {
+				this.posY += 0.05;
+			}
 		}
 		if (player == 1){
 			if ((ArcadeKeys.isKeyPressed(1, 1))) {
 				this.posX -= 0.05;
 			}
-			else if ((ArcadeKeys.isKeyPressed(1, 3))) {
+			else if ((ArcadeKeys.isKeyPressed(1, 3))) { //Y coordinate: Up is 0;
 				this.posX += 0.05;
+			}
+			else if ((ArcadeKeys.isKeyPressed(1, 0))) {
+				this.posY += 0.05;
 			}
 		}
 	}
