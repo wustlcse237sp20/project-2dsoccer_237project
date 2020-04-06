@@ -15,6 +15,10 @@ public class Soccer {
 				StdDraw.picture(0.5,0.5,"background.png");
 				StdDraw.setPenColor();
 				StdDraw.filledRectangle(.5,.05,.005,.1);
+				StdDraw.line(0.02, 0.5, 0.2, 0.5);
+				StdDraw.line(0.8, 0.5, 0.98, 0.5);
+				StdDraw.line(0.02, 0, 0.02, 0.5);
+				StdDraw.line(0.98, 0, 0.98, 0.5);
 				while(true) {
 					if(StdDraw.mousePressed()) {
 						StdDraw.show(0);
