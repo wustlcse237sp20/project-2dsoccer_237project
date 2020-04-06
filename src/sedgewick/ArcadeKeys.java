@@ -1,7 +1,6 @@
+package sedgewick;
 
 import java.awt.event.KeyEvent;
-
-import sedgewick.StdDraw;
 
 public class ArcadeKeys {
 	public static final int KEY_UP = 0, KEY_LEFT = 1, KEY_DOWN = 2,
