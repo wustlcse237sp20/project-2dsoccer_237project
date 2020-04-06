@@ -16,11 +16,11 @@ public class Soccer {
 				StdDraw.show(0);
 				StdDraw.picture(0.5,0.5,"background.png");
 				StdDraw.setPenColor();
-				StdDraw.filledRectangle(.5,.05,.005,.1);
-				StdDraw.line(0.02, 0.5, 0.2, 0.5);
-				StdDraw.line(0.8, 0.5, 0.98, 0.5);
-				StdDraw.line(0.02, 0, 0.02, 0.5);
-				StdDraw.line(0.98, 0, 0.98, 0.5);
+//				StdDraw.filledRectangle(.5,.05,.005,.1);
+//				StdDraw.line(0.02, 0.5, 0.2, 0.5);
+//				StdDraw.line(0.8, 0.5, 0.98, 0.5);
+//				StdDraw.line(0.02, 0, 0.02, 0.5);
+//				StdDraw.line(0.98, 0, 0.98, 0.5);
 				while(true) {
 					if(StdDraw.mousePressed()) {
 						StdDraw.show(0);
@@ -28,8 +28,8 @@ public class Soccer {
 					}
 				}
 				StdDraw.setScale(-1,1);
-				Player player1 = new Player(0, 0.8, 0); //Not calling "Player" causes static/non static error
-				Player player2 = new Player(0, 0.5, 1);
+				Player player1 = new Player(-.5, -1, 0); //Not calling "Player" causes static/non static error
+				Player player2 = new Player(0.5, -1, 1);
 				while(true) {
 					StdDraw.clear();
 					StdDraw.picture(0,0,"background.png");
