@@ -7,7 +7,7 @@ We completed the following user stories:
 - Place objects within UI(goal, centerline, placeholders for soccer players(blocks)
 - A user should not be able to move past the limits of the end of the goal. a certian height and the center line.
 - A user should be able to use their keyboard to move the soccer players.
-- A user should be able to jump 
+- A user should be able to jump
 
 What user stories do you intend to complete next iteration?
 - A user should be able to win if they have the most amount of goals, or tie if they have an equal number of goals.
@@ -24,3 +24,5 @@ Is there anything that you implemented but doesn't currently work?
 
 What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)
 - You should download the files and run the Soccer.java file -> run as java application.
+^^^^^^
+Finished writing bashscript that is in .src folder, which runs program.
