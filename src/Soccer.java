@@ -7,7 +7,6 @@ public class Soccer {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// test for terminal use.
 				StdDraw.setCanvasSize(1364,768);
 				StdDraw.setPenColor(Color.black);
 				StdDraw.filledRectangle(0.5, 0.5, 682, 384);
