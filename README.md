@@ -4,7 +4,7 @@ A 2D soccer game made in Java.
 1. Mustapha Barrie
 2. Jeff Dong
 3. Jared Malkin
-4. Anya Pawar
+4. Amin Bdeir
 
 ## How to run:
 1. Clone repository and navigate to Soccer.java
