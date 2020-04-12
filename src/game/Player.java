@@ -7,13 +7,13 @@ import sedgewick.StdDraw;
 public class Player {
 		
 		public double posX;
-		private double posY; 
+		public double posY; 
 		public double velocityX;
 		public double velocityY;
 		private final double startPosX;
 		private final double startPosY;
-		private final double width = 0.1;
-		private final double height = 0.1;
+		public final double width = 0.1;
+		public final double height = 0.1;
 		private int player;
 
 
