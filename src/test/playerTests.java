@@ -23,5 +23,11 @@ class playerTests {
 		assertEquals(player.getPosX(), player.posX);
 	}
 	
+	@Test
+	void testGravity(){
+		player.gravity();
+		assertEquals(player.velocityY, -0.005);
+	}
+	
 
 }
