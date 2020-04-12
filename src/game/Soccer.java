@@ -18,7 +18,7 @@ public class Soccer {
 					board.drawGoals();
 					board.drawPlayers(player1,player2);
 					board.movePlayers(player1,player2);
-					StdDraw.show(10);
+					StdDraw.show(2);
 					board.handleJumping(player1, player2);
 				}
 	}
