@@ -108,12 +108,6 @@ public class Player {
 			this.posX += this.velocityX;
 			this.posY += this.velocityY;
 			updateVelocity(this.posY);
-			//vertical acceleration updates the velocity
-//			if(this.posY > -0.95) {
-//				this.velocityY = this.velocityY - 0.0000005;
-//			}
-//			
-//			this.velocityX = 0;
 		}
 		
 		/**
