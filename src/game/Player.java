@@ -46,9 +46,13 @@ public class Player {
 				moveRightPlayer(buttonPressed);
 			}
 			//velocities update the position
-			updateVelocity();
+			updatePosition();
 			
 		}
+		/**
+		 * determines the player based on the when it was initalized
+	     * @return String of the whether it is left player or right player
+		*/
 		
 		public String determinePlayer() {
 			if(player == 0) {
@@ -58,6 +62,10 @@ public class Player {
 			}
 			return "Invalid Player";
 		}
+		/**
+		 * Determines how to move left player based on button pressed and posX or posY 
+	     * @param indication of which button was pressed
+		*/
 		
 		public void moveLeftPlayer(String buttonPressed) {
 			if ((buttonPressed == "a") && this.posX>-1) {
@@ -73,6 +81,10 @@ public class Player {
 	
 			}
 		}
+		/**
+		 * Determines how to move right player based on button pressed and posX or posY 
+	     * @param indication of which button was pressed
+		*/
 		public void moveRightPlayer(String buttonPressed) {
 			if ((buttonPressed == "left") && this.posX > 0.1) {
 				//key pressed changes velocity
@@ -87,19 +99,41 @@ public class Player {
 			}
 			
 		}
+		/**
+		 * updates the position of a player by adding to its x position and y position and sets x and y velocity
+	     * @param indication of which button was pressed
+		*/
 		
-		public void updateVelocity() {
+		public void updatePosition() {
 			this.posX += this.velocityX;
 			this.posY += this.velocityY;
+			updateVelocity(this.posY);
 			//vertical acceleration updates the velocity
-			if(this.posY > -0.95) {
+//			if(this.posY > -0.95) {
+//				this.velocityY = this.velocityY - 0.0000005;
+//			}
+//			
+//			this.velocityX = 0;
+		}
+		
+		/**
+		 * updates the x velocity and updates the y velocity based on y position.
+	     * @param the current y position
+		*/
+		
+		public void updateVelocity(double posY) {
+			if(posY > -0.95) {
 				this.velocityY = this.velocityY - 0.0000005;
 			}
 			
 			this.velocityX = 0;
+			
 		}
 		
-		
+		/**
+		 * updates the x velocity and updates the y velocity based on y position.
+	     * @return a String indication which key was pressed
+		*/
 		public String buttonPressed() {
 			if(ArcadeKeys.isKeyPressed(0, 1)) {
 				return "a";
@@ -116,15 +150,21 @@ public class Player {
 			}
 			return "not valid button";
 		}
-		
-		
+		/**
+		 * get's the current x position
+		*/
 		public double getPosX() {
 			return this.posX;
 		}
-		
+		/**
+		 * get's the current y position
+		*/
 		public double getPosY() {
 			return this.posY;
 		}
+		/**
+		 * updates the y velocity to act in a way of gravity.
+		*/
 		public void gravity() {
 			this.velocityY = this.velocityY - 0.005;
 		}
