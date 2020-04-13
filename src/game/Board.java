@@ -1,11 +1,12 @@
 package game;
 
 import java.awt.Color;
+import java.util.concurrent.TimeUnit;
 
 import sedgewick.StdDraw;
 
 public class Board {
-	
+
 	/**
 	 * Starts by setting up the splash screen, which then leads to our main screen after the user presses the mouse
 	 */
@@ -15,6 +16,8 @@ public class Board {
 		StdDraw.filledRectangle(0.5, 0.5, 682, 384);
 		StdDraw.setPenColor(Color.white);
 		StdDraw.text(0.5, 0.8, "2-D Soccer");
+		StdDraw.text(0.5, 0.6, "Move Left player with keys: a, w, d");
+		StdDraw.text(0.5, 0.5, "Move Right player with keys: left, up, right");
 		StdDraw.text(0.5, 0.4, "Right Click to Continue");
 		StdDraw.show(0);
 		StdDraw.picture(0.5,0.5,"background.png");
@@ -27,6 +30,34 @@ public class Board {
 		// sets up new scale so when players are drawn.
 		StdDraw.setScale(-1,1);
 	}
+	/**
+	 * Sets up the time that should be displayed on the screen with the field.
+	 * @params the current timer time
+	*/
+	
+	public void Timer(int timer) {
+		if(timer < 10) {
+			StdDraw.text(0.5, 0.8, "00:0" + timer);
+		}
+		if(timer < 60 && timer >=10) {
+			StdDraw.text(0.5, 0.8, "00:" + timer);
+		}else if(timer >= 60) {
+			StdDraw.text(0.5, 0.8, "01:00");
+		}
+	}
+	
+	/**
+	 * Based on the time decides whether game is over or not.
+	 * @params the current timer time
+	 * @return boolean indicating if game is over or not
+	*/
+	public boolean gameOver(int timer) {
+		if(timer > 60) {
+			return true;
+		}
+		return false;
+	}
+	//public void drawGameOverScreen();
 	
 	/**
 	 * draws two sets of goals (one on each side)
