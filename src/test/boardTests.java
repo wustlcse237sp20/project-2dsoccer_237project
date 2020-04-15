@@ -6,17 +6,28 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.Board;
+import game.Player;
 import sedgewick.StdDraw;
 
 
 class boardTests {
 	private Board board;
+	private Player player;
+	private Player player1;
 
 	@BeforeEach
 	void setupTestingObjects() {
 		board = new Board();
+		player = new Player(0.5, -1, 0);
+		player1 = new Player(0.5, -1, 1);
 	}
 	
+	
+	@Test
+	void testMovePlayers() {
+		board.movePlayers(player,player1);
+		assert(true);
+	}
 	
 
 	

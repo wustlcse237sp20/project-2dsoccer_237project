@@ -35,6 +35,7 @@ public class Player {
 		/**
 		 * movement of each player depending on which keys are pressed.
 		 */
+		//change it so that it takes in a button press
 		public void move() {
 		
 			//player movement with constraints of the boundaries of the field

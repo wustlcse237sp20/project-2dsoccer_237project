@@ -13,10 +13,14 @@ import sedgewick.StdDraw;
 
 class playerTests {
 	private Player player;
+	private Player player1;
+	private Player player2;
 	
 	@BeforeEach
 	void setupTestingObjects() {
-		player = new Player(0.5, -1, 1);
+		player = new Player(0.5, -1, 0);
+		player1 = new Player(0.5, -1, 1);
+		player2 = new Player(0.5,-1,2);
 	}
 	
 	@Test
@@ -24,23 +28,23 @@ class playerTests {
 		player.gravity();
 		assertEquals(player.velocityY, -0.005);
 	}
-	@Test
-	void testPlayer(){
-		assertEquals("Left Player", player.determinePlayer());
-		
-	}
 	
 	@Test
-	void testButtonPressed() {
-		String buttonPressed = player.buttonPressed();
-		assertEquals("a", ArcadeKeys.isKeyPressed(0, 1));
-		assertEquals("d", ArcadeKeys.isKeyPressed(0, 3));
-		assertEquals("w", ArcadeKeys.isKeyPressed(0, 0));
-		assertEquals("left", ArcadeKeys.isKeyPressed(1, 1));
-		assertEquals("right", ArcadeKeys.isKeyPressed(1, 3));
-		assertEquals("up", ArcadeKeys.isKeyPressed(1, 0));
-		
+	void testDeterminePlayer0() {
+		String whichPlayer = player.determinePlayer();
+		assertEquals("Left Player", whichPlayer);
 	}
+	@Test
+	void testDeterminePlayer1() {
+		String whichPlayer = player1.determinePlayer();
+		assertEquals("Right Player", whichPlayer);		
+	}
+	@Test
+	void testDeterminePlayer3() {
+		String whichPlayer = player2.determinePlayer();
+		assertEquals("Invalid Player", whichPlayer);		
+	}
+	
 	
 
 }
