@@ -29,8 +29,6 @@ class boardTests {
 		assert(true);
 	}
 	
-
-	
 	@Test
 	void testGameOver() {
 		for(int i = 0; i < 61; i++) {
@@ -40,5 +38,8 @@ class boardTests {
 			assertEquals(true, board.gameOver(i));
 		}
 	}
+	
+	//handleJumping unit test
+	//Timer unit test
 
 }

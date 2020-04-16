@@ -158,6 +158,18 @@ public class Player {
 			return this.posY;
 		}
 		/**
+		 * get's the current x velocity
+		*/
+		public double getvelocityX() {
+			return this.velocityX;
+		}
+		/**
+		 * get's the current y velocity
+		*/
+		public double getvelocityY() {
+			return this.velocityY;
+		}
+		/**
 		 * updates the y velocity to act in a way of gravity.
 		*/
 		public void gravity() {
