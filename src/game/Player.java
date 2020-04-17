@@ -35,6 +35,7 @@ public class Player {
 		/**
 		 * movement of each player depending on which keys are pressed.
 		 */
+		//change it so that it takes in a button press
 		public void move() {
 		
 			//player movement with constraints of the boundaries of the field
@@ -155,6 +156,18 @@ public class Player {
 		*/
 		public double getPosY() {
 			return this.posY;
+		}
+		/**
+		 * get's the current x velocity
+		*/
+		public double getvelocityX() {
+			return this.velocityX;
+		}
+		/**
+		 * get's the current y velocity
+		*/
+		public double getvelocityY() {
+			return this.velocityY;
 		}
 		/**
 		 * updates the y velocity to act in a way of gravity.
