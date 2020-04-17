@@ -22,7 +22,7 @@ public class Soccer {
 				while(isgameOver == false) {
 					StdDraw.clear();
 					StdDraw.picture(0,0,"background.png");
-          board.drawGround();
+					board.drawGround();
 //					board.drawTime(count);
 					//Checks to see if game is over based on time
 //					isgameOver = board.gameOver(count);
