@@ -10,7 +10,7 @@ public class Board {
 	 * Starts by setting up the splash screen, which then leads to our main screen after the user presses the mouse
 	 */
 	public void setupScreen() {
-		StdDraw.setCanvasSize(1364,768);
+		StdDraw.setCanvasSize(1364,682);
 		StdDraw.setPenColor(Color.black);
 		StdDraw.filledRectangle(0.5, 0.5, 682, 384);
 		StdDraw.setPenColor(Color.white);
@@ -25,7 +25,8 @@ public class Board {
 			}
 		}
 		// sets up new scale so when players are drawn.
-		StdDraw.setScale(-1,1);
+		StdDraw.setXscale(-2,2);
+		StdDraw.setYscale(-1,1);
 	}
 	
 	/**
@@ -33,8 +34,14 @@ public class Board {
 	*/
 	public void drawGoals() {
 		StdDraw.filledRectangle(0,-0.95,0.01,.2);
-		StdDraw.filledRectangle(-1.0, 0.4, 0.1, 0.8); 
-		StdDraw.filledRectangle(1.0,0.4,0.1,0.8);
+		StdDraw.filledRectangle(-2.0, 0.4, 0.2, 0.8); 
+		StdDraw.filledRectangle(2.0,0.4,0.2,0.8);
+	}
+	
+	public void drawGround() {
+		StdDraw.setPenColor(Color.green);
+		StdDraw.filledRectangle(0, -1.1, 2.2, 0.05);
+		StdDraw.setPenColor(Color.black);
 	}
 	
 	/**
@@ -54,6 +61,14 @@ public class Board {
 	public void movePlayers(Player player1, Player player2) {
 		player1.move();
 		player2.move();
+	}
+	
+	public void drawBall(Ball ball) {
+		ball.draw();
+	}
+	
+	public void moveBall(Ball ball) {
+		ball.move();
 	}
 	/**
 	 * implements a jumping movement based on the location of each player.
