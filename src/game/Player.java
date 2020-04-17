@@ -69,12 +69,12 @@ public class Player {
 		*/
 		
 		public void moveLeftPlayer(String buttonPressed) {
-			if ((buttonPressed == "a") && this.posX>-1) {
+			if ((buttonPressed == "a") && this.posX>-2) {
 				//key pressed changes velocity
-				this.velocityX -= 0.005;
+				this.velocityX -= 0.01;
 			}
 			else if ((buttonPressed == "d") && this.posX<-0.1) {
-				this.velocityX += 0.005;
+				this.velocityX += 0.01;
 			}
 			else if ((buttonPressed == "w") && this.posY <= -0.95) {
 				//a jump starts you off at a fixed velocity, if you are currently on the ground
@@ -89,10 +89,10 @@ public class Player {
 		public void moveRightPlayer(String buttonPressed) {
 			if ((buttonPressed == "left") && this.posX > 0.1) {
 				//key pressed changes velocity
-				this.velocityX -= 0.005;
+				this.velocityX -= 0.01;
 			}
-			else if ((buttonPressed == "right") && this.posX < 1) {
-				this.velocityX += 0.005;
+			else if ((buttonPressed == "right") && this.posX < 2) {
+				this.velocityX += 0.01;
 			}
 			else if ((buttonPressed == "up") && this.posY <= -0.95) {
 				//a jump starts you off at a fixed velocity, if you are currently on the ground

@@ -10,7 +10,9 @@ public class Ball {
 	private double posY; 
 	private final double startPosX;
 	private final double startPosY;
-	private final double radius = 0.1;
+	private double velocityX = 0.02;
+	private double velocityY;
+	private final double radius = 0.05;
 	
 	public Ball(double x, double y){
 		this.posX = x;
@@ -20,8 +22,41 @@ public class Ball {
 	}
 	
 	public void draw() {
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.filledCircle(this.posX, this.posY, this.radius);
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.circle(this.posX, this.posY, this.radius);
+	}
+	
+	public void move() {
+		updatePosition();
+		
+	}
+	
+	public void updatePosition() {
+		this.posX += this.velocityX;
+		this.posY += this.velocityY;
+		updateVelocity();
+	}
+	
+	public void updateVelocity() {
+		if(posY > -1) {
+			this.velocityY = this.velocityY - 0.0005;
+		}
+		if(posX < -1.9 && posY < 0.4) {
+			this.posX = -1.9;
+			this.velocityX = this.velocityX * -0.9;
+		}
+		if(posX > 1.9 && posY < 0.4) {
+			this.posX = 1.9;
+			this.velocityX = this.velocityX * -0.9;
+		}
+		if(posY < -1) {
+			this.posY = -1;
+			this.velocityY = this.velocityY * -0.7;
+		}
+		if(posY == -1) {
+			this.velocityX = this.velocityX * 0.97;
+		}
 	}
 	
 }
