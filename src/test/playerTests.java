@@ -48,7 +48,7 @@ class playerTests {
 	@Test
 	void moveLeftPlayerA() {
 		player.moveLeftPlayer("a");
-		assertEquals(-0.005, player.getvelocityX());
+		assertEquals(-0.01, player.getvelocityX());
 	}
 	@Test
 	void moveLeftPlayerW() {
@@ -58,17 +58,17 @@ class playerTests {
 	@Test
 	void moveLeftPlayerD() {
 		player.moveLeftPlayer("d");
-		assertEquals(0.005, player.getvelocityX());
+		assertEquals(0.01, player.getvelocityX());
 	}
 	@Test
 	void moveRightPlayerLeft() {
 		player1.moveRightPlayer("left");
-		assertEquals(-0.005, player1.getvelocityX());
+		assertEquals(-0.01, player1.getvelocityX());
 	}
 	@Test
 	void moveRightPlayerRight() {
 		player1.moveRightPlayer("right");
-		assertEquals(0.005, player1.getvelocityX());
+		assertEquals(0.01, player1.getvelocityX());
 	}
 	@Test
 	void moveRightPlayerUp() {
