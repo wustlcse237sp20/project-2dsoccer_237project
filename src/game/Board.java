@@ -55,18 +55,14 @@ public class Board {
 	*/
 	
 	public String Timer(int timer) {
-		if(timer < 10 && timer >= 0) {
-			String time = getTime(timer);
-			return time + timer;
-		}
-		if(timer < 60 && timer >=10) {
-			String time = getTime(timer);
-			return time + timer;
+		String time = getTime(timer);
+		String fullTime = time + timer;
+		if(timer < 0) {
+			return "Can't display time";
 		}else if(timer >= 60) {
-			String time = getTime(timer);
 			return time;
 		}
-		return "Can't display time";
+		return fullTime;
 	}
 	/**
 	 * draws the time that should be displayed on the screen with the field.
@@ -74,18 +70,8 @@ public class Board {
 	*/
 	
 	public void drawTime(int timer) {
-		if(timer < 10 && timer >= 0) {
-			String time = Timer(timer);
-			StdDraw.text(0.5, 0.8, time);	
-		}
-		if(timer < 60 && timer >=10) {
-			String time = Timer(timer);
-			StdDraw.text(0.5, 0.8, time);
-		}else if(timer >= 60) {
-			String time = getTime(timer);
-			StdDraw.text(0.5, 0.8, time);
-		}
-		
+		String time = Timer(timer);
+		StdDraw.text(0.5, 0.8, time);
 	}
 	
 	/**
@@ -94,7 +80,7 @@ public class Board {
 	 * @return boolean indicating if game is over or not
 	*/
 	public boolean gameOver(int timer) {
-		if(timer > 60) {
+		if(timer >= 60) {
 			return true;
 		}
 		return false;

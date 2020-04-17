@@ -31,10 +31,10 @@ class boardTests {
 	
 	@Test
 	void testGameOver() {
-		for(int i = 0; i < 61; i++) {
+		for(int i = 0; i < 60; i++) {
 			assertEquals(false, board.gameOver(i));
 		}
-		for(int i = 61; i < 1000; i++) {
+		for(int i = 60; i < 1000; i++) {
 			assertEquals(true, board.gameOver(i));
 		}
 	}
