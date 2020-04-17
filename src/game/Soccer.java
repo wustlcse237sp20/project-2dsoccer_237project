@@ -14,23 +14,26 @@ public class Soccer {
 				board.setupScreen();
 				Player player1 = new Player(-.5, -1, 0); //Not calling "Player" causes static/non static error
 				Player player2 = new Player(0.5, -1, 1);
-				int timer = 0;
-				int count = 0;
+				// timer and count needed to formulate the time displayed
+//				int timer = 0;
+//				int count = 0;
 				boolean isgameOver = false;
 				while(isgameOver == false) {
 					StdDraw.clear();
 					StdDraw.picture(0,0,"background.png");
-					board.Timer(count);
-					isgameOver = board.gameOver(count);
+					//board.drawTime(count);
+					//Checks to see if game is over based on time
+					//isgameOver = board.gameOver(count);
 					board.drawGoals();
 					board.drawPlayers(player1,player2);
 					board.movePlayers(player1,player2);
 					StdDraw.show(2);
 					board.handleJumping(player1, player2);
-					if(timer % 100 == 0) {
-						count++;
-					}
-					timer+=1;
+					//Counts by one second for updating the time
+//					if(timer % 100 == 0) {
+//						count++;
+//					}
+//					timer+=1;
 				}
 	}
 

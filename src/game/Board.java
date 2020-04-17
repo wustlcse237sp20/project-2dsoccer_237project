@@ -29,21 +29,63 @@ public class Board {
 		}
 		// sets up new scale so when players are drawn.
 		StdDraw.setScale(-1,1);
+		
 	}
 	/**
-	 * Sets up the time that should be displayed on the screen with the field.
+	 * gets the time based on the current timer time
+	 * @params the current timer time
+	 * @return the beginning part of the time
+	*/
+	
+	public String getTime(int timer) {
+		if(timer < 10 && timer >= 0) {
+			return "00:0";
+		}else if(timer < 60 && timer >= 10) {
+			return "00:";
+		}else if(timer >= 60){
+			return "01:00";
+		}
+		return "Invalid time";
+		
+	}
+	/**
+	 * Constructs the full time that should be displayed
+	 * @params the current timer time
+	 * @return the time that should be displayed
+	*/
+	
+	public String Timer(int timer) {
+		if(timer < 10 && timer >= 0) {
+			String time = getTime(timer);
+			return time + timer;
+		}
+		if(timer < 60 && timer >=10) {
+			String time = getTime(timer);
+			return time + timer;
+		}else if(timer >= 60) {
+			String time = getTime(timer);
+			return time;
+		}
+		return "Can't display time";
+	}
+	/**
+	 * draws the time that should be displayed on the screen with the field.
 	 * @params the current timer time
 	*/
 	
-	public void Timer(int timer) {
-		if(timer < 10) {
-			StdDraw.text(0.5, 0.8, "00:0" + timer);
+	public void drawTime(int timer) {
+		if(timer < 10 && timer >= 0) {
+			String time = Timer(timer);
+			StdDraw.text(0.5, 0.8, time);	
 		}
 		if(timer < 60 && timer >=10) {
-			StdDraw.text(0.5, 0.8, "00:" + timer);
+			String time = Timer(timer);
+			StdDraw.text(0.5, 0.8, time);
 		}else if(timer >= 60) {
-			StdDraw.text(0.5, 0.8, "01:00");
+			String time = getTime(timer);
+			StdDraw.text(0.5, 0.8, time);
 		}
+		
 	}
 	
 	/**
