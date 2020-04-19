@@ -41,25 +41,41 @@ public class Ball {
 	}
 	
 	public void updateVelocity() {
+		//gravity
 		if(posY > -1) {
 			this.velocityY = this.velocityY - 0.0005;
 		}
-		if(posX < -1.9 && posY < 0.4) {
-			this.posX = -1.9;
+		//left upper wall bounce
+		if(posX < -1.8 && posY > -0.4) {
+			this.posX = -1.8;
 			this.velocityX = this.velocityX * -0.9;
 		}
-		if(posX > 1.9 && posY < 0.4) {
-			this.posX = 1.9;
+		//right upper wall bounce
+		if(posX > 1.8 && posY > -0.4) {
+			this.posX = 1.8;
 			this.velocityX = this.velocityX * -0.9;
 		}
+		//left bounce
+		if(posX < -2.1) {
+			this.posX = -2.1;
+			this.velocityX = this.velocityX * -0.9;
+		}
+		//right bounce
+		if(posX > 2.1) {
+			this.posX = 2.1;
+			this.velocityX = this.velocityX * -0.9;
+		}
+		//ground bounce
 		if(posY < -1) {
 			this.posY = -1;
 			this.velocityY = this.velocityY * -0.7;
 		}
+		//ceiling bounce
 		if(posY >=1) {
 			this.posY = 1;
 			this.velocityY = this.velocityY * -1;
 		}
+		//friction of ball on ground
 		if(posY == -1) {
 			this.velocityX = this.velocityX * 0.97;
 		}
@@ -80,6 +96,17 @@ public class Ball {
 			this.posY = this.posY + 0.05;
 			this.velocityX = p2.getvelocityX()*1.6;
 			this.velocityY = p2.getvelocityY()*0.4;
+		}
+	}
+	
+	public void isKicked(int i) {
+		if(i == 0) {
+			this.velocityX = 0.02;
+			this.velocityY = 0.03;
+		}
+		else if(i == 1) {
+			this.velocityX = -0.02;
+			this.velocityY = 0.03;
 		}
 	}
 	

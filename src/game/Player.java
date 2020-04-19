@@ -49,10 +49,10 @@ public class Player {
 //			}
 			
 			if (player == 0) {
-				if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX>-1.99) {
+				if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX>-2) {
 					this.velocityX -= 0.003;
 				}
-				else if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX<=-1.99) {
+				else if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX<=-2) {
 					this.velocityX = 0;
 				}
 				if((ArcadeKeys.isKeyPressed(0, 3)) && this.posX<-0.11) {
@@ -72,10 +72,10 @@ public class Player {
 				else if((ArcadeKeys.isKeyPressed(1, 1)) && this.posX<=0.11) {
 					this.velocityX = 0;
 				}
-				if((ArcadeKeys.isKeyPressed(1, 3)) && this.posX<1.99) {
+				if((ArcadeKeys.isKeyPressed(1, 3)) && this.posX<2) {
 					this.velocityX += 0.003;
 				}
-				else if((ArcadeKeys.isKeyPressed(1, 3)) && this.posX>=1.99) {
+				else if((ArcadeKeys.isKeyPressed(1, 3)) && this.posX>=2) {
 					this.velocityX = 0;
 				}
 				if((ArcadeKeys.isKeyPressed(1, 0)) && this.posY<=-0.95) {
@@ -87,6 +87,25 @@ public class Player {
 			updatePosition();
 			
 		}
+		
+		/**
+		 * if the ball is in kicking range, call ball isKicked(), setting a velocity
+		 * up and towards the other goal.
+		 * @param ball the game ball
+		 */
+		public void kickBall(Ball ball) {
+			if(player == 0) {
+				if(ball.distP1 <= 0.18 && ArcadeKeys.isKeyPressed(0, 2)) {
+					ball.isKicked(0);
+				}
+			}
+			if(player == 1) {
+				if(ball.distP2 <= 0.18 && ArcadeKeys.isKeyPressed(1, 2)) {
+					ball.isKicked(1);
+				}
+			}
+		}
+		
 		/**
 		 * determines the player based on the when it was initalized
 	     * @return String of the whether it is left player or right player
