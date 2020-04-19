@@ -68,7 +68,7 @@ public class Ball {
 		//ground bounce
 		if(posY < -1) {
 			this.posY = -1;
-			this.velocityY = this.velocityY * -0.7;
+			this.velocityY = this.velocityY * -0.85;
 		}
 		//ceiling bounce
 		if(posY >=1) {
@@ -89,13 +89,13 @@ public class Ball {
 			this.posX = this.posX + 0.05;
 			this.posY = this.posY + 0.05;
 			this.velocityX = p1.getvelocityX()*1.6;
-			this.velocityY = p1.getvelocityY()*0.4;
+			this.velocityY = p1.getvelocityY()*0.7;
 		}
 		if(distP2 <= 0.12) {
 			this.posX = this.posX - 0.05;
 			this.posY = this.posY + 0.05;
 			this.velocityX = p2.getvelocityX()*1.6;
-			this.velocityY = p2.getvelocityY()*0.4;
+			this.velocityY = p2.getvelocityY()*0.7;
 		}
 	}
 	
