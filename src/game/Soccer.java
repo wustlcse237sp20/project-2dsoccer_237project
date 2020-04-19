@@ -16,16 +16,17 @@ public class Soccer {
 				Player player2 = new Player(0.5, -1, 1);
 				Ball ball = new Ball(0,0);
 				// timer and count needed to formulate the time displayed
-//				int timer = 0;
-//				int count = 0;
+				int timer = 0;
+				int count = 0;
 				boolean isgameOver = false;
 				while(isgameOver == false) {
 					StdDraw.clear();
 					StdDraw.picture(0,0,"background.png");
 					board.drawGround();
-//					board.drawTime(count);
+					board.drawTime(count);
+					board.drawScore(player1,player2);
 					//Checks to see if game is over based on time
-//					isgameOver = board.gameOver(count);
+					isgameOver = board.gameOver(count);
 					board.drawGoals();
 					board.drawPlayers(player1,player2);
 					board.drawBall(ball);
@@ -39,14 +40,13 @@ public class Soccer {
 					StdDraw.show(2);
 					board.handleJumping(player1, player2);
 					//Counts by one second for updating the time
-//					if(timer % 100 == 0) {
-//						count++;
-//					}
-//					timer+=1;
+					if(timer % 100 == 0) {
+						count++;
+					}
+					timer+=1;
 				}
+				
+				
 	}
 
 }
-
-
-

@@ -1,11 +1,15 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.concurrent.TimeUnit;
 
 import sedgewick.StdDraw;
 
 public class Board {
+	
+	// The variable to hold who wins the game at the end of time.
+	private String winner;
 
 	/**
 	 * Starts by setting up the splash screen, which then leads to our main screen after the user presses the mouse
@@ -15,10 +19,16 @@ public class Board {
 		StdDraw.setPenColor(Color.black);
 		StdDraw.filledRectangle(0.5, 0.5, 682, 384);
 		StdDraw.setPenColor(Color.white);
+		Font font = new Font("Arial", Font.BOLD, 60);
+		StdDraw.setFont(font);
 		StdDraw.text(0.5, 0.8, "2-D Soccer");
-		StdDraw.text(0.5, 0.6, "Move Left player with keys: a, w, d");
-		StdDraw.text(0.5, 0.5, "Move Right player with keys: left, up, right");
-		StdDraw.text(0.5, 0.4, "Right Click to Continue");
+		font = new Font("Arial", Font.PLAIN, 16);
+		StdDraw.setFont(font);
+		StdDraw.text(0.5, 0.6, "Move left player with keys : A   W   D");
+		StdDraw.text(0.5, 0.55, "Left player, kick ball with key :      S    ");
+		StdDraw.text(0.5, 0.45, "Move right player with keys: LEFT  UP   RIGHT");
+		StdDraw.text(0.5, 0.4, "Right player, kick ball with key :      DOWN    ");
+		StdDraw.text(0.5, 0.3, "Right Click to Continue");
 		StdDraw.show(0);
 		StdDraw.picture(0.5,0.5,"background.png");
 		while(true) {
@@ -71,8 +81,55 @@ public class Board {
 	*/
 	
 	public void drawTime(int timer) {
+		StdDraw.setPenColor(Color.BLACK);
+		Font font = new Font("Arial",Font.PLAIN, 16);
+		StdDraw.setFont(font);
 		String time = Timer(timer);
-		StdDraw.text(0.5, 0.8, time);
+		StdDraw.text(0, .85, time);
+	}
+	/**
+	 * draws the current score based on the number of points the player has.
+	 * @params player1 points to be drawn
+	 * @params player2 poitns to be drawn.
+	*/
+	
+	public void drawScore(Player player1, Player player2) {
+		StdDraw.setPenColor(Color.BLACK);
+		Font font = new Font("Arial", Font.BOLD, 48);
+		StdDraw.setFont(font);
+		String playerOneScore = String.valueOf(player1.getScore());
+		String playerTwoScore = String.valueOf(player2.getScore());
+		this.winner = determineWinner(player1, player2);
+		String fullScore = playerOneScore + " - " + playerTwoScore;
+		StdDraw.text(0,.95,fullScore);
+	}
+	/**
+	 * determines the winner based on who has most amount of points, or tie otherwise
+	 * @params player1 points 
+	 * @params player2 poitns 
+	*/
+	
+	public String determineWinner(Player player1, Player player2) {
+		if(player1.getScore() > player2.getScore()) {
+			return "Player 1 wins";
+		}else if(player2.getScore() > player1.getScore()) {
+			return "Player 2 wins";
+		}else {
+			return "Tied Game";
+		}
+	}
+	/**
+	 * Draws the game over screen once there is no time left
+	*/
+	
+	public void drawGameOverScreen() {
+		StdDraw.setPenColor(Color.BLACK);
+		Font font = new Font("Arial", Font.BOLD, 60);
+		StdDraw.setFont(font);
+		StdDraw.text(0,0,"Game Over");
+		Font font2 = new Font("Arial", Font.PLAIN, 32);
+		StdDraw.setFont(font2);
+		StdDraw.text(0,-0.2,this.winner);
 	}
 	
 	/**
@@ -82,11 +139,11 @@ public class Board {
 	*/
 	public boolean gameOver(int timer) {
 		if(timer >= 60) {
+			drawGameOverScreen();
 			return true;
 		}
 		return false;
 	}
-	//public void drawGameOverScreen();
 	
 	/**
 	 * draws two sets of goals (one on each side)
@@ -121,11 +178,18 @@ public class Board {
 		player1.move();
 		player2.move();
 	}
+	/**
+	 * draws the ball on the screen
+	 * @params the ball to be drawn.
+	*/
 	
 	public void drawBall(Ball ball) {
 		ball.draw();
 	}
-	
+	/**
+	 * moves the ball on the screen
+	 * @params the ball to be moved
+	*/
 	public void moveBall(Ball ball) {
 		ball.move();
 	}
@@ -153,4 +217,3 @@ public class Board {
 	}
 
 }
-
