@@ -15,6 +15,7 @@ public class Player {
 		private final double width = 0.1;
 		private final double height = 0.1;
 		private int player;
+		private int score;
 
 
 		public Player(double x, double y, int player) {
@@ -23,6 +24,43 @@ public class Player {
 			this.startPosX = x;
 			this.startPosY = y;
 			this.player = player;
+		}
+		/**
+		 * gets the score of the player
+		 * @return the points the player has
+		 */
+		public int getScore() {
+			updateScore();
+			return this.score;
+		}
+		/**
+		 * sets the score (for testing purposes)
+		 */
+		
+		public void setScore(int score) {
+			this.score = score;
+		}
+		/**
+		 * Updates the score based on the players position
+		 */	
+		public void updateScore() {
+//			if(determinePlayer() == "Left Player") {
+//				if(this.posX <= -1.5 && this.posX >= -1.55) {
+//					score += 1;
+//				}
+//			}
+//			if(determinePlayer() == "Right Player") {
+//				if(this.posX >= 1.5) {
+//					score += 1;
+//				}
+			//}
+			if(this.posX <= -1.5 && this.posX >= -1.55) {
+				score += 1;
+			}
+			if(this.posX >= 1.5) {
+				score += 1;
+			}
+			
 		}
 		
 		/**
@@ -39,12 +77,38 @@ public class Player {
 		public void move() {
 		
 			//player movement with constraints of the boundaries of the field
-			String buttonPressed = buttonPressed();
+//			if (determinePlayer() == "Left Player"){
+//				moveLeftPlayer(buttonPressed());
+//			}
+//			if (determinePlayer() == "Right Player"){
+//				moveRightPlayer(buttonPressed());
+//			}
 			if (determinePlayer() == "Left Player"){
-				moveLeftPlayer(buttonPressed);
+				if ((ArcadeKeys.isKeyPressed(0, 1)) && this.posX>-2) {
+					//key pressed changes velocity
+					this.velocityX -= 0.01;
+				}
+				if ((ArcadeKeys.isKeyPressed(0, 3)) && this.posX<-0.1) {
+					this.velocityX += 0.01;
+				}
+				if ((ArcadeKeys.isKeyPressed(0, 0)) && this.posY <= -0.95) {
+					//a jump starts you off at a fixed velocity, if you are currently on the ground
+					this.velocityY = 0.1;
+		
+				}
 			}
 			if (determinePlayer() == "Right Player"){
-				moveRightPlayer(buttonPressed);
+				if ((ArcadeKeys.isKeyPressed(1, 1)) && this.posX > 0.1) {
+					//key pressed changes velocity
+					this.velocityX -= 0.01;
+				}
+				if ((ArcadeKeys.isKeyPressed(1, 3)) && this.posX < 2) {
+					this.velocityX += 0.01;
+				}
+				if ((ArcadeKeys.isKeyPressed(1, 0)) && this.posY <= -0.95) {
+					//a jump starts you off at a fixed velocity, if you are currently on the ground
+					this.velocityY = 0.1;
+				}
 			}
 			//velocities update the position
 			updatePosition();
@@ -73,10 +137,10 @@ public class Player {
 				//key pressed changes velocity
 				this.velocityX -= 0.01;
 			}
-			else if ((buttonPressed == "d") && this.posX<-0.1) {
+			if ((buttonPressed == "d") && this.posX<-0.1) {
 				this.velocityX += 0.01;
 			}
-			else if ((buttonPressed == "w") && this.posY <= -0.95) {
+			if ((buttonPressed == "w") && this.posY <= -0.95) {
 				//a jump starts you off at a fixed velocity, if you are currently on the ground
 				this.velocityY = 0.1;
 	
@@ -87,14 +151,14 @@ public class Player {
 	     * @param indication of which button was pressed
 		*/
 		public void moveRightPlayer(String buttonPressed) {
-			if ((buttonPressed == "left") && this.posX > 0.1) {
+			if ((buttonPressed == "left")  && this.posX > 0.1) {
 				//key pressed changes velocity
 				this.velocityX -= 0.01;
 			}
-			else if ((buttonPressed == "right") && this.posX < 2) {
+			if ((buttonPressed == "right") && this.posX < 2) {
 				this.velocityX += 0.01;
 			}
-			else if ((buttonPressed == "up") && this.posY <= -0.95) {
+			if ((buttonPressed == "up") && this.posY <= -0.95) {
 				//a jump starts you off at a fixed velocity, if you are currently on the ground
 				this.velocityY = 0.1;
 			}
@@ -132,19 +196,25 @@ public class Player {
 		public String buttonPressed() {
 			if(ArcadeKeys.isKeyPressed(0, 1)) {
 				return "a";
-			}else if((ArcadeKeys.isKeyPressed(0, 3))) {
+			}
+			if((ArcadeKeys.isKeyPressed(0, 3))) {
 				return "d";
-			}else if((ArcadeKeys.isKeyPressed(0, 0))) {
+			}
+			if((ArcadeKeys.isKeyPressed(0, 0))) {
 				return "w";
-			}else if((ArcadeKeys.isKeyPressed(1, 1))) {
+			}
+			if((ArcadeKeys.isKeyPressed(1, 1))) {
 				return "left";
-			}else if((ArcadeKeys.isKeyPressed(1, 3))){
+			}
+			if((ArcadeKeys.isKeyPressed(1, 3))){
 				return "right";
-			}else if((ArcadeKeys.isKeyPressed(1, 0))){
+			}
+			if((ArcadeKeys.isKeyPressed(1, 0))){
 				return "up";
 			}
 			return "not valid button";
 		}
+
 		/**
 		 * get's the current x position
 		*/
