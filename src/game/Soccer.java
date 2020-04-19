@@ -17,7 +17,7 @@ public class Soccer {
 				Ball ball = new Ball(0,0);
 				// timer and count needed to formulate the time displayed
 				int timer = 0;
-				int count = 55;
+				int count = 0;
 				boolean isgameOver = false;
 				while(isgameOver == false) {
 					StdDraw.clear();

@@ -25,12 +25,24 @@ public class Player {
 			this.startPosY = y;
 			this.player = player;
 		}
-		
+		/**
+		 * gets the score of the player
+		 * @return the points the player has
+		 */
 		public int getScore() {
 			updateScore();
 			return this.score;
 		}
+		/**
+		 * sets the score (for testing purposes)
+		 */
 		
+		public void setScore(int score) {
+			this.score = score;
+		}
+		/**
+		 * Updates the score based on the players position
+		 */	
 		public void updateScore() {
 //			if(determinePlayer() == "Left Player") {
 //				if(this.posX <= -1.5 && this.posX >= -1.55) {

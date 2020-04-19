@@ -8,6 +8,7 @@ import sedgewick.StdDraw;
 
 public class Board {
 	
+	// The variable to hold who wins the game at the end of time.
 	private String winner;
 
 	/**
@@ -86,6 +87,11 @@ public class Board {
 		String time = Timer(timer);
 		StdDraw.text(0, .85, time);
 	}
+	/**
+	 * draws the current score based on the number of points the player has.
+	 * @params player1 points to be drawn
+	 * @params player2 poitns to be drawn.
+	*/
 	
 	public void drawScore(Player player1, Player player2) {
 		StdDraw.setPenColor(Color.BLACK);
@@ -97,6 +103,11 @@ public class Board {
 		String fullScore = playerOneScore + " - " + playerTwoScore;
 		StdDraw.text(0,.95,fullScore);
 	}
+	/**
+	 * determines the winner based on who has most amount of points, or tie otherwise
+	 * @params player1 points 
+	 * @params player2 poitns 
+	*/
 	
 	public String determineWinner(Player player1, Player player2) {
 		if(player1.getScore() > player2.getScore()) {
@@ -107,6 +118,9 @@ public class Board {
 			return "Tied Game";
 		}
 	}
+	/**
+	 * Draws the game over screen once there is no time left
+	*/
 	
 	public void drawGameOverScreen() {
 		StdDraw.setPenColor(Color.BLACK);
@@ -164,11 +178,18 @@ public class Board {
 		player1.move();
 		player2.move();
 	}
+	/**
+	 * draws the ball on the screen
+	 * @params the ball to be drawn.
+	*/
 	
 	public void drawBall(Ball ball) {
 		ball.draw();
 	}
-	
+	/**
+	 * moves the ball on the screen
+	 * @params the ball to be moved
+	*/
 	public void moveBall(Ball ball) {
 		ball.move();
 	}

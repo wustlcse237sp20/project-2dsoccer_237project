@@ -29,15 +29,15 @@ class boardTests {
 		assert(true);
 	}
 	
-	@Test
-	void testGameOver() {
-		for(int i = 0; i < 60; i++) {
-			assertEquals(false, board.gameOver(i));
-		}
-		for(int i = 60; i < 1000; i++) {
-			assertEquals(true, board.gameOver(i));
-		}
-	}
+//	@Test
+//	void testGameOver() {
+//		for(int i = 0; i < 60; i++) {
+//			assertEquals(false, board.gameOver(i));
+//		}
+//		for(int i = 60; i < 1000; i++) {
+//			assertEquals(true, board.gameOver(i));
+//		}
+//	}
 	@Test 
 	void testGetTime() {
 		assertEquals("00:0", board.getTime(5));
@@ -62,6 +62,25 @@ class boardTests {
 	void testHandleJumpingPlayer1B() {
 		board.handleJumping(player1, player);
 		assertEquals(0.00,player1.getvelocityY());
+	}
+	
+	@Test 
+	void testWinner() {
+		player.setScore(1);
+		player1.setScore(0);
+		assertEquals("Player 1 wins", board.determineWinner(player, player1));
+	}
+	@Test 
+	void testWinner1() {
+		player.setScore(0);
+		player1.setScore(1);
+		assertEquals("Player 2 wins", board.determineWinner(player, player1));
+	}
+	@Test 
+	void testWinner2() {
+		player.setScore(0);
+		player1.setScore(0);
+		assertEquals("Tied Game", board.determineWinner(player, player1));
 	}
 
 }

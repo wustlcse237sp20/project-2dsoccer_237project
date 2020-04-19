@@ -89,6 +89,8 @@ class playerTests {
 	}
 	
 	//test for move function
+	//test for updateScore
+	
 	
 	
 	

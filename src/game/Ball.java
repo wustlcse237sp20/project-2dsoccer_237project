@@ -27,7 +27,6 @@ public class Ball {
 		StdDraw.setPenColor(StdDraw.BLACK);
 	}
 	
-	
 	public void move() {
 		updatePosition();
 	}
