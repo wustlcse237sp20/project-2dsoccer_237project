@@ -12,10 +12,8 @@ public class ArcadeKeys {
 	private static final int[][] KEYS = {
 			{ KeyEvent.VK_W, KeyEvent.VK_UP, KeyEvent.VK_Z, KeyEvent.VK_0 },
 			{ KeyEvent.VK_A, KeyEvent.VK_LEFT, KeyEvent.VK_C, KeyEvent.VK_9 },
-			{ KeyEvent.VK_S, KeyEvent.VK_DOWN, KeyEvent.VK_X,
-					KeyEvent.VK_EQUALS },
-			{ KeyEvent.VK_D, KeyEvent.VK_RIGHT, KeyEvent.VK_B,
-					KeyEvent.VK_MINUS },
+			{ KeyEvent.VK_S, KeyEvent.VK_DOWN, KeyEvent.VK_X,KeyEvent.VK_EQUALS },
+			{ KeyEvent.VK_D, KeyEvent.VK_RIGHT, KeyEvent.VK_B,KeyEvent.VK_MINUS },
 			{ KeyEvent.VK_SHIFT, KeyEvent.VK_COMMA, KeyEvent.VK_PERIOD,
 					KeyEvent.VK_PAGE_DOWN },
 			{ KeyEvent.VK_F, KeyEvent.VK_K, KeyEvent.VK_M, KeyEvent.VK_DELETE },

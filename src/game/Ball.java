@@ -27,9 +27,9 @@ public class Ball {
 		StdDraw.setPenColor(StdDraw.BLACK);
 	}
 	
+	
 	public void move() {
 		updatePosition();
-		
 	}
 	
 	public void updatePosition() {
@@ -57,6 +57,30 @@ public class Ball {
 		if(posY == -1) {
 			this.velocityX = this.velocityX * 0.97;
 		}
+	}
+	/**
+	 * get's the current x position
+	*/
+	public double getPosX() {
+		return this.posX;
+	}
+	/**
+	 * get's the current y position
+	*/
+	public double getPosY() {
+		return this.posY;
+	}
+	/**
+	 * get's the current x velocity
+	*/
+	public double getvelocityX() {
+		return this.velocityX;
+	}
+	/**
+	 * get's the current y velocity
+	*/
+	public double getvelocityY() {
+		return this.velocityY;
 	}
 	
 }
