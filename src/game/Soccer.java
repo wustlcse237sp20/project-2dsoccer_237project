@@ -31,7 +31,12 @@ public class Soccer {
 					board.drawPlayers(player1,player2);
 					board.drawBall(ball);
 					board.movePlayers(player1,player2);
+					ball.playerCollision(player1, player2);
+					player1.setBallDist(player1.calcBallDist(ball));
+					player2.setBallDist(player2.calcBallDist(ball));
 					board.moveBall(ball);
+					player1.kickBall(ball);
+					player2.kickBall(ball);
 					StdDraw.show(2);
 					board.handleJumping(player1, player2);
 					//Counts by one second for updating the time
