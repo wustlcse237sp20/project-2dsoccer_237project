@@ -28,5 +28,5 @@ A 2D soccer game made in Java.
 5. A user should be able to input their names
 6. A user should be able to click buttons on homescreen
 ### Is there anything that you implemented but doesn't currently work?
-1. Everything worked as intended
+1. The only problem that we hace is the game runs at different speeds. If it is going to fast you can change the show(0) to a higher number. It is located in Soccer.java file within the runGame method.
 
