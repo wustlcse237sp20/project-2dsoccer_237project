@@ -10,7 +10,7 @@ public class Ball {
 	private double posY; 
 	private final double startPosX;
 	private final double startPosY;
-	private double velocityX = 0.02;
+	private double velocityX = 0.005;
 	private double velocityY;
 	private final double radius = 0.05;
 	public double distP1;
@@ -21,6 +21,14 @@ public class Ball {
 		this.posY = y;
 		this.startPosX = x;
 		this.startPosY = y;
+		
+		double val = Math.random();
+		if(val<0.5) {
+			velocityX = 0.005;
+		}
+		else if(val>=0.5) {
+			velocityX = -0.005;
+		}
 	}
 	
 	public void draw() {
@@ -122,13 +130,40 @@ public class Ball {
 		return dist;
 	}
 
-	public double getPosX() {
-		return posX;
+	/**
+	 * when the ball enters a goal, add a point to the correct player. 
+	 * Also reset the ball's position to the middle of the field, with a starting
+	 * velocity in the direction of the player who did not score.
+	 * @param p1
+	 * @param p2
+	 */
+	public boolean goal(Player p1, Player p2) {
+		if(this.posX > 1.85 && this.posY < -0.4) {
+			p1.goalScored();
+			resetBall(1);
+			p1.resetPos();
+			p2.resetPos();
+			return true;
+		}
+		if(this.posX < -1.85 && this.posY < -0.4) {
+			p2.goalScored();
+			resetBall(-1);
+			p1.resetPos();
+			p2.resetPos();
+			return true;
+		}
+		return false;
 	}
 	
-	public double getPosY() {
-		return posY;
+	public void resetBall(int dir) {
+		this.posX = dir;
+		this.posY = 0.5;
+		this.velocityX = 0;
+		this.velocityY = 0;
+		
+		
 	}
+	
 	/**
 	 * get's the current x position
 	*/

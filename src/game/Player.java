@@ -16,7 +16,7 @@ public class Player {
 		private final double height = 0.2;
 		private int player;
 		private double ballDistance;
-    private int score;
+		private int score;
 
 
 		public Player(double x, double y, int player) {
@@ -31,7 +31,7 @@ public class Player {
 		 * @return the points the player has
 		 */
 		public int getScore() {
-			updateScore();
+			//updateScore();
 			return this.score;
 		}
 		/**
@@ -44,24 +44,28 @@ public class Player {
 		/**
 		 * Updates the score based on the players position
 		 */	
-		public void updateScore() {
-//			if(determinePlayer() == "Left Player") {
-//				if(this.posX <= -1.5 && this.posX >= -1.55) {
-//					score += 1;
-//				}
+//		public void updateScore() {
+////			if(determinePlayer() == "Left Player") {
+////				if(this.posX <= -1.5 && this.posX >= -1.55) {
+////					score += 1;
+////				}
+////			}
+////			if(determinePlayer() == "Right Player") {
+////				if(this.posX >= 1.5) {
+////					score += 1;
+////				}
+//			//}
+//			if(this.posX <= -1.5 && this.posX >= -1.55) {
+//				score += 1;
 //			}
-//			if(determinePlayer() == "Right Player") {
-//				if(this.posX >= 1.5) {
-//					score += 1;
-//				}
-			//}
-			if(this.posX <= -1.5 && this.posX >= -1.55) {
-				score += 1;
-			}
-			if(this.posX >= 1.5) {
-				score += 1;
-			}
-			
+//			if(this.posX >= 1.5) {
+//				score += 1;
+//			}
+//			
+//		}
+		
+		public void goalScored() {
+			score += 1;
 		}
 		
 		/**
@@ -248,6 +252,17 @@ public class Player {
 				return "up";
 			}
 			return "not valid button";
+		}
+		
+		public void resetPos() {
+			if(player == 0) {
+				this.posX = -1.8;
+				this.velocityX = 0;
+			}
+			else if(player == 1) {
+				this.posX = 1.8;
+				this.velocityX = 0;
+			}
 		}
 
 		/**

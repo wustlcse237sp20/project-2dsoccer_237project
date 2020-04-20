@@ -6,15 +6,16 @@ import java.util.concurrent.TimeUnit;
 import sedgewick.StdDraw;
 import java.awt.Color;
 public class Soccer {
-	private Player player1;
-	private Player player2;
+	public Player player1;
+	public Player player2;
+	
 
 	public static void main(String[] args) {
 				Board board = new Board();
 				board.setupScreen();
 				Player player1 = new Player(-.5, -1, 0); //Not calling "Player" causes static/non static error
 				Player player2 = new Player(0.5, -1, 1);
-				Ball ball = new Ball(0,0);
+				Ball ball = new Ball(0,0.5);
 				// timer and count needed to formulate the time displayed
 				int timer = 0;
 				int count = 0;
@@ -25,6 +26,7 @@ public class Soccer {
 					board.drawGround();
 					board.drawTime(count);
 					board.drawScore(player1,player2);
+					
 					//Checks to see if game is over based on time
 					isgameOver = board.gameOver(count);
 					board.drawGoals();
@@ -37,7 +39,11 @@ public class Soccer {
 					board.moveBall(ball);
 					player1.kickBall(ball);
 					player2.kickBall(ball);
+					
 					StdDraw.show(2);
+					if(ball.goal(player1, player2)) {
+						StdDraw.pause(500);
+					}
 					board.handleJumping(player1, player2);
 					//Counts by one second for updating the time
 					if(timer % 100 == 0) {
@@ -47,6 +53,14 @@ public class Soccer {
 				}
 				
 				
+	}
+	
+	private void drawEverything() {
+		
+	}
+	
+	private void gameMechanics() {
+		
 	}
 
 }

@@ -42,6 +42,8 @@ public class Board {
 		StdDraw.setYscale(-1,1);
 		
 	}
+	
+	
 	/**
 	 * gets the time based on the current timer time
 	 * @params the current timer time
