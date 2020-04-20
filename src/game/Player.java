@@ -31,39 +31,17 @@ public class Player {
 		 * @return the points the player has
 		 */
 		public int getScore() {
-			//updateScore();
 			return this.score;
 		}
 		/**
 		 * sets the score (for testing purposes)
 		 */
-		
 		public void setScore(int score) {
 			this.score = score;
 		}
 		/**
-		 * Updates the score based on the players position
+		 * Updates the score based if a goal was score
 		 */	
-//		public void updateScore() {
-////			if(determinePlayer() == "Left Player") {
-////				if(this.posX <= -1.5 && this.posX >= -1.55) {
-////					score += 1;
-////				}
-////			}
-////			if(determinePlayer() == "Right Player") {
-////				if(this.posX >= 1.5) {
-////					score += 1;
-////				}
-//			//}
-//			if(this.posX <= -1.5 && this.posX >= -1.55) {
-//				score += 1;
-//			}
-//			if(this.posX >= 1.5) {
-//				score += 1;
-//			}
-//			
-//		}
-		
 		public void goalScored() {
 			score += 1;
 		}
@@ -78,12 +56,9 @@ public class Player {
 		/**
 		 * movement of each player depending on which keys are pressed.
 		 */
-		//change it so that it takes in a button press
-		public void move() {
-		
-			//player movement with constraints of the boundaries of the field
-			
-			if (player == 0) {
+		//Can't refactor much right now on further iteration get movement of 2 players at the same time to work.		
+		public void move() {			
+			if (determinePlayer() == "Left Player") {
 				if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX>-2) {
 					this.velocityX -= 0.003;
 				}
@@ -100,7 +75,7 @@ public class Player {
 					this.velocityY = 0.05;
 				}
 			}
-			if(player == 1) {
+			if(determinePlayer() == "Right Player") {
 				if((ArcadeKeys.isKeyPressed(1, 1)) && this.posX>0.11) {
 					this.velocityX -= 0.003;
 				}
@@ -117,10 +92,8 @@ public class Player {
 					this.velocityY = 0.05;
 				}
 			}
-			
 			//velocities update the position
 			updatePosition();
-			
 		}
 		
 		/**
@@ -159,51 +132,51 @@ public class Player {
 	     * @param indication of which button was pressed
 		*/
 		
-//		public void moveLeftPlayer(String buttonPressed) {
-//			if ((buttonPressed == "a") && this.posX>-1.99) {
-//				//key pressed changes velocity
-//				this.velocityX -= 0.003;
-//			}
-//			else if((buttonPressed == "a") && this.posX<1.99) {
-//				this.velocityX = 0;
-//			}
-//			if ((buttonPressed == "d") && this.posX<-0.11) {
-//				this.velocityX += 0.003;
-//			}
-//			else if((buttonPressed == "d") && this.posX>-0.11) {
-//				this.velocityX = 0;
-//			}
-//			if ((buttonPressed == "w") && this.posY <= -0.95) {
-//				//a jump starts you off at a fixed velocity, if you are currently on the ground
-//				this.velocityY = 0.05;
-//	
-//			}
-//			System.out.println(this.velocityX);
-//		}
+		public void moveLeftPlayer(String buttonPressed) {
+			if ((buttonPressed == "a") && this.posX>-1.99) {
+				//key pressed changes velocity
+				this.velocityX -= 0.1;
+			}
+			else if((buttonPressed == "a") && this.posX<1.99) {
+				this.velocityX = 0;
+			}
+			if ((buttonPressed == "d") && this.posX<-0.11) {
+				this.velocityX += 0.1;
+			}
+			else if((buttonPressed == "d") && this.posX>-0.11) {
+				this.velocityX = 0;
+			}
+			if ((buttonPressed == "w") && this.posY <= -0.95) {
+				//a jump starts you off at a fixed velocity, if you are currently on the ground
+				this.velocityY = 0.05;
+	
+			}
+			System.out.println(this.velocityX);
+		}
 		/**
 		 * Determines how to move right player based on button pressed and posX or posY 
 	     * @param indication of which button was pressed
 		*/
-//		public void moveRightPlayer(String buttonPressed) {
-//			if ((buttonPressed == "left") && this.posX > 0.21) {
-//				//key pressed changes velocity
-//				this.velocityX -= 0.003;
-//			}
-//			else if((buttonPressed == "left") && this.posX>0.21) {
-//				this.velocityX = 0;
-//			}
-//			if ((buttonPressed == "right") && this.posX < 1.99) {
-//				this.velocityX += 0.003;
-//			}
-//			else if ((buttonPressed == "right") && this.posX>1.99) {
-//				this.velocityX = 0;
-//			}
-//			if ((buttonPressed == "up") && this.posY <= -0.95) {
-//				//a jump starts you off at a fixed velocity, if you are currently on the ground
-//				this.velocityY = 0.05;
-//			}
-//			
-//		}
+		public void moveRightPlayer(String buttonPressed) {
+			if ((buttonPressed == "left") && this.posX > 0.21) {
+				//key pressed changes velocity
+				this.velocityX -= 0.1;
+			}
+			else if((buttonPressed == "left") && this.posX>0.21) {
+				this.velocityX = 0;
+			}
+			if ((buttonPressed == "right") && this.posX < 1.99) {
+				this.velocityX += 0.1;
+			}
+			else if ((buttonPressed == "right") && this.posX>1.99) {
+				this.velocityX = 0;
+			}
+			if ((buttonPressed == "up") && this.posY <= -0.95) {
+				//a jump starts you off at a fixed velocity, if you are currently on the ground
+				this.velocityY = 0.05;
+			}
+			
+		}
 		/**
 		 * updates the position of a player by adding to its x position and y position and sets x and y velocity
 	     * @param indication of which button was pressed
@@ -253,6 +226,9 @@ public class Player {
 			}
 			return "not valid button";
 		}
+		/**
+		 * Resets the players position after a goal is scored.
+		*/
 		
 		public void resetPos() {
 			if(player == 0) {
@@ -295,11 +271,19 @@ public class Player {
 		public void gravity() {
 			this.velocityY = this.velocityY - 0.002;
 		}
+		/**
+		 * Calculates the distance between player and ball
+		 * @param ball, distance is measured from.
+		*/
 		
 		public double calcBallDist(Ball b) {
 			double dist = Math.sqrt((this.posY - b.getPosY())*(this.posY - b.getPosY()) + (this.posX - b.getPosX())*(this.posX - b.getPosX()));
 			return dist;
 		}
+		/**
+		 * Sets the ball distance
+		 * @param ball, distance is measured from.
+		*/
 		
 		public void setBallDist(double dist) {
 			this.ballDistance = dist;

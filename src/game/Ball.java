@@ -160,8 +160,6 @@ public class Ball {
 		this.posY = 0.5;
 		this.velocityX = 0;
 		this.velocityY = 0;
-		
-		
 	}
 	
 	/**
