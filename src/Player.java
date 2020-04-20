@@ -42,10 +42,10 @@ public class Player {
 				//key pressed changes velocity
 				this.velocityX -= 0.005;
 			}
-			else if ((ArcadeKeys.isKeyPressed(0, 3)) && this.posX<-0.1) {
+			if ((ArcadeKeys.isKeyPressed(0, 3)) && this.posX<-0.1) {
 				this.velocityX += 0.005;
 			}
-			else if ((ArcadeKeys.isKeyPressed(0, 0)) && this.posY <= -0.95) {
+			if ((ArcadeKeys.isKeyPressed(0, 0)) && this.posY <= -0.95) {
 				//a jump starts you off at a fixed velocity, if you are currently on the ground
 				this.velocityY = 0.1;
 	
@@ -56,10 +56,10 @@ public class Player {
 				//key pressed changes velocity
 				this.velocityX -= 0.005;
 			}
-			else if ((ArcadeKeys.isKeyPressed(1, 3)) && this.posX < 1) {
+			if ((ArcadeKeys.isKeyPressed(1, 3)) && this.posX < 1) {
 				this.velocityX += 0.005;
 			}
-			else if ((ArcadeKeys.isKeyPressed(1, 0)) && this.posY <= -0.95) {
+			if ((ArcadeKeys.isKeyPressed(1, 0)) && this.posY <= -0.95) {
 				//a jump starts you off at a fixed velocity, if you are currently on the ground
 				this.velocityY = 0.1;
 			}
