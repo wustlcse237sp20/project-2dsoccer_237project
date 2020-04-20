@@ -28,8 +28,6 @@ public class Soccer {
 					}
 					timer+=1;
 				}
-				
-				
 	}
 
 	private static boolean runGame(Board board, Player player1, Player player2, Ball ball, int count) {
