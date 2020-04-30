@@ -28,16 +28,6 @@ class boardTests {
 		board.movePlayers(player,player1);
 		assert(true);
 	}
-	
-//	@Test
-//	void testGameOver() {
-//		for(int i = 0; i < 60; i++) {
-//			assertEquals(false, board.gameOver(i));
-//		}
-//		for(int i = 60; i < 1000; i++) {
-//			assertEquals(true, board.gameOver(i));
-//		}
-//	}
 	@Test 
 	void testGetTime() {
 		assertEquals("00:0", board.getTime(5));
@@ -56,7 +46,7 @@ class boardTests {
 	@Test
 	void testHandleJumpingPlayer1A() {
 		board.handleJumping(player, player1);
-		assertEquals(-0.005,player.getvelocityY());
+		assertEquals(-0.002,player.getvelocityY());
 	}
 	@Test
 	void testHandleJumpingPlayer1B() {

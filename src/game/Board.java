@@ -42,6 +42,8 @@ public class Board {
 		StdDraw.setYscale(-1,1);
 		
 	}
+	
+	
 	/**
 	 * gets the time based on the current timer time
 	 * @params the current timer time
@@ -153,7 +155,9 @@ public class Board {
 		StdDraw.filledRectangle(-2.0, 0.4, 0.2, 0.8); 
 		StdDraw.filledRectangle(2.0,0.4,0.2,0.8);
 	}
-	
+	/**
+	 * draws the ground
+	*/
 	public void drawGround() {
 		StdDraw.setPenColor(Color.green);
 		StdDraw.filledRectangle(0, -1.1, 2.2, 0.05);
