@@ -11,24 +11,37 @@ public class Soccer {
 	
 
 	public static void main(String[] args) {
-				Board board = new Board();
-				board.setupScreen();
-				Player player1 = new Player(-.5, -1, 0); //Not calling "Player" causes static/non static error
-				Player player2 = new Player(0.5, -1, 1);
-				Ball ball = new Ball(0,0.5);
-				int timer = 0;
-				int count = 0;
-				boolean isgameOver = false;
-				while(isgameOver == false) {
-					StdDraw.clear();
-					StdDraw.picture(0,0,"background.png");
-					isgameOver = runGame(board, player1, player2, ball, count);
-					if(timer % 100 == 0) {
-						count++;
-					}
-					timer+=1;
+		
+		boolean decision = true;
+		while(decision == true) {
+			Board board = new Board();
+			board.setupScreen();
+			Player player1 = new Player(-.5, -1, 0); //Not calling "Player" causes static/non static error
+			Player player2 = new Player(0.5, -1, 1);
+			Ball ball = new Ball(0,0.5);
+			int timer = 0;
+			int count = 57;
+			boolean isgameOver = false;
+			while(isgameOver == false) {
+				StdDraw.clear();
+				StdDraw.picture(0,0,"background.png");
+				isgameOver = runGame(board, player1, player2, ball, count);
+				if(timer % 100 == 0) {
+					count++;
 				}
-	}
+				timer+=1;
+			}
+			decision = false;
+			// because you cant pass variables in by refreunce just get new values
+			// from returing and array
+			boolean[] runGameSettings = board.rerunGame(decision, isgameOver);
+			decision = runGameSettings[0];
+			isgameOver = runGameSettings[1];
+		}
+
+			
+					
+}
 
 	private static boolean runGame(Board board, Player player1, Player player2, Ball ball, int count) {
 		boolean isgameOver;
@@ -36,7 +49,7 @@ public class Soccer {
 		board.drawTime(count);
 		board.drawScore(player1,player2);
 		//Checks to see if game is over based on time
-		isgameOver = board.gameOver(count);
+		isgameOver = board.gameOver(count, player1, player2);
 		board.drawGoals();
 		board.drawPlayers(player1,player2);
 		board.drawBall(ball);
@@ -54,5 +67,6 @@ public class Soccer {
 		board.handleJumping(player1, player2);
 		return isgameOver;
 	}
+	
 
 }
