@@ -62,7 +62,7 @@ public class Ball {
 	public void updateVelocity() {
 		//gravity
 		if(posY > -1) {
-			this.velocityY = this.velocityY - 0.0005;
+			this.velocityY = this.velocityY - 0.0003;
 		}
 		//left upper wall bounce
 		if(posX < -1.8 && posY > -0.4) {
@@ -111,18 +111,34 @@ public class Ball {
 		distP1 = calcDist(p1);
 		distP2 = calcDist(p2);
 		if(distP1 <= 0.12) {
-			this.posX = this.posX + 0.05;
-			this.posY = this.posY + 0.05;
-			this.velocityX = p1.getvelocityX()*1.6;
-			this.velocityY = p1.getvelocityY()*0.7;
+			hittingPlayer(p1);
 		}
 		if(distP2 <= 0.12) {
-			this.posX = this.posX - 0.05;
-			this.posY = this.posY + 0.05;
-			this.velocityX = p2.getvelocityX()*1.6;
-			this.velocityY = p2.getvelocityY()*0.7;
+			hittingPlayer(p2);
 		}
 	}
+	
+	public void hittingPlayer(Player p) {
+		getUnstuck(p);
+		this.velocityX = p.getvelocityX()*1.4;
+		this.velocityY = p.getvelocityY()*1;
+	}
+	
+	public void getUnstuck(Player p) {
+		if(p.determinePlayer() == "Left Player") {
+			this.posX = this.posX + 0.05;
+		}
+		else if(p.determinePlayer() == "Right Player") {
+			this.posX = this.posX - 0.05;
+		}
+		this.posY = this.posY + 0.05;
+	}
+	/**
+	 * when a player kicks the ball, the ball is assigned a fixed x and y velocity.
+	 * We will want to look into this to possibly make a more physics based approach.
+	 * @param i direction the ball should go. 0 is right, 1 is left.
+	 */
+	
 	/**
 	 * when a player kicks the ball, the ball is assigned a fixed x and y velocity.
 	 * We will want to look into this to possibly make a more physics based approach.
@@ -131,11 +147,11 @@ public class Ball {
 	
 	public void isKicked(int i) {
 		if(i == 0) {
-			this.velocityX = 0.02;
+			this.velocityX = 0.01;
 			this.velocityY = 0.03;
 		}
 		else if(i == 1) {
-			this.velocityX = -0.02;
+			this.velocityX = -0.01;
 			this.velocityY = 0.03;
 		}
 	}
