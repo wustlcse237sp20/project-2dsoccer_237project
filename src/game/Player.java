@@ -16,7 +16,9 @@ public class Player {
 		private final double height = 0.2;
 		private int player;
 		private double ballDistance;
-    private int score;
+		private int score;
+		public boolean powerUp = false;
+		public boolean powerDown = false; //true if the opposing player has a powerUp
 
 
 		public Player(double x, double y, int player) {
@@ -31,92 +33,119 @@ public class Player {
 		 * @return the points the player has
 		 */
 		public int getScore() {
-			updateScore();
 			return this.score;
 		}
 		/**
 		 * sets the score (for testing purposes)
 		 */
-		
 		public void setScore(int score) {
 			this.score = score;
 		}
 		/**
-		 * Updates the score based on the players position
+		 * Updates the score based if a goal was score
 		 */	
-		public void updateScore() {
-//			if(determinePlayer() == "Left Player") {
-//				if(this.posX <= -1.5 && this.posX >= -1.55) {
-//					score += 1;
-//				}
-//			}
-//			if(determinePlayer() == "Right Player") {
-//				if(this.posX >= 1.5) {
-//					score += 1;
-//				}
-			//}
-			if(this.posX <= -1.5 && this.posX >= -1.55) {
-				score += 1;
-			}
-			if(this.posX >= 1.5) {
-				score += 1;
-			}
-			
+		public void goalScored() {
+			score += 1;
 		}
 		
 		/**
 		 * draws players
 		 */
 		public void draw() {
-			StdDraw.setPenColor(StdDraw.BLACK);
+			if(this.powerDown == true) { //red color indicates the controls are reversed.
+				StdDraw.setPenColor(StdDraw.RED);
+			}
+			else {
+				StdDraw.setPenColor(StdDraw.BLACK);
+			}
 			StdDraw.filledRectangle(this.posX, this.posY, this.width/2, this.height/2);
+			StdDraw.setPenColor(StdDraw.BLACK);
 		}
 		/**
 		 * movement of each player depending on which keys are pressed.
 		 */
-		//change it so that it takes in a button press
-		public void move() {
-		
-			//player movement with constraints of the boundaries of the field
-			
-			if (player == 0) {
-				if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX>-2) {
-					this.velocityX -= 0.003;
+		//Can't refactor much right now on further iteration get movement of 2 players at the same time to work.		
+		public void move() {			
+			if (determinePlayer() == "Left Player") {
+				if(this.powerDown == false) {
+					if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX>-2) {
+						this.velocityX -= 0.002;
+					}
+					else if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX<=-2) {
+						this.velocityX = 0;
+					}
+					if((ArcadeKeys.isKeyPressed(0, 3)) && this.posX<-0.11) {
+						this.velocityX += 0.002;
+					}
+					else if((ArcadeKeys.isKeyPressed(0, 3)) && this.posX>=-0.11) {
+						this.velocityX = 0;
+					}
+					if((ArcadeKeys.isKeyPressed(0, 0)) && this.posY<=-0.95) {
+						this.velocityY = 0.02;
+					}
 				}
-				else if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX<=-2) {
-					this.velocityX = 0;
+				else {
+					if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX<-0.11) {
+						this.velocityX += 0.002;
+					}
+					else if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX>=-0.11) {
+						this.posX = -0.12;
+						this.velocityX = 0;
+					}
+					if((ArcadeKeys.isKeyPressed(0, 3)) && this.posX>-2) {
+						this.velocityX -= 0.002;
+					}
+					else if((ArcadeKeys.isKeyPressed(0, 3)) && this.posX<=-2) {
+						this.posX = -1.99;
+						this.velocityX = 0;
+					}
+					if((ArcadeKeys.isKeyPressed(0, 0)) && this.posY<=-0.95) {
+						this.velocityY = 0.02;
+					}
 				}
-				if((ArcadeKeys.isKeyPressed(0, 3)) && this.posX<-0.11) {
-					this.velocityX += 0.003;
-				}
-				else if((ArcadeKeys.isKeyPressed(0, 3)) && this.posX>=-0.11) {
-					this.velocityX = 0;
-				}
-				if((ArcadeKeys.isKeyPressed(0, 0)) && this.posY<=-0.95) {
-					this.velocityY = 0.05;
-				}
+				
 			}
-			if(player == 1) {
-				if((ArcadeKeys.isKeyPressed(1, 1)) && this.posX>0.11) {
-					this.velocityX -= 0.003;
+			if(determinePlayer() == "Right Player") {
+				if(this.powerDown == false) {
+					if((ArcadeKeys.isKeyPressed(1, 1)) && this.posX>0.11) {
+						this.velocityX -= 0.002;
+					}
+					else if((ArcadeKeys.isKeyPressed(1, 1)) && this.posX<=0.11) {
+						this.velocityX = 0;
+					}
+					if((ArcadeKeys.isKeyPressed(1, 3)) && this.posX<2) {
+						this.velocityX += 0.002;
+					}
+					else if((ArcadeKeys.isKeyPressed(1, 3)) && this.posX>=2) {
+						this.velocityX = 0;
+					}
+					if((ArcadeKeys.isKeyPressed(1, 0)) && this.posY<=-0.95) {
+						this.velocityY = 0.02;
+					}
 				}
-				else if((ArcadeKeys.isKeyPressed(1, 1)) && this.posX<=0.11) {
-					this.velocityX = 0;
+				else {
+					if((ArcadeKeys.isKeyPressed(1, 1)) && this.posX<2) {
+						this.velocityX += 0.002;
+					}
+					else if((ArcadeKeys.isKeyPressed(1, 1)) && this.posX>=2) {
+						this.posX = 1.99;
+						this.velocityX = 0;
+					}
+					if((ArcadeKeys.isKeyPressed(1, 3)) && this.posX>0.11) {
+						this.velocityX -= 0.002;
+					}
+					else if((ArcadeKeys.isKeyPressed(1, 3)) && this.posX<=0.11) {
+						this.posX = 0.12;
+						this.velocityX = 0;
+					}
+					if((ArcadeKeys.isKeyPressed(1, 0)) && this.posY<=-0.95) {
+						this.velocityY = 0.02;
+					}
 				}
-				if((ArcadeKeys.isKeyPressed(1, 3)) && this.posX<2) {
-					this.velocityX += 0.003;
-				}
-				else if((ArcadeKeys.isKeyPressed(1, 3)) && this.posX>=2) {
-					this.velocityX = 0;
-				}
-				if((ArcadeKeys.isKeyPressed(1, 0)) && this.posY<=-0.95) {
-					this.velocityY = 0.05;
-				}
+				
 			}
-			
 			//velocities update the position
 			updatePosition();
-			
 		}
 		
 		/**
@@ -150,21 +179,22 @@ public class Player {
 			}
 			return "Invalid Player";
 		}
-		/**
-		 * Determines how to move left player based on button pressed and posX or posY 
-	     * @param indication of which button was pressed
-		*/
-		
+//		
+//		/**
+//		 * Determines how to move left player based on button pressed and posX or posY 
+//	     * @param indication of which button was pressed
+//		*/
+//		
 //		public void moveLeftPlayer(String buttonPressed) {
 //			if ((buttonPressed == "a") && this.posX>-1.99) {
 //				//key pressed changes velocity
-//				this.velocityX -= 0.003;
+//				this.velocityX -= 0.1;
 //			}
 //			else if((buttonPressed == "a") && this.posX<1.99) {
 //				this.velocityX = 0;
 //			}
 //			if ((buttonPressed == "d") && this.posX<-0.11) {
-//				this.velocityX += 0.003;
+//				this.velocityX += 0.1;
 //			}
 //			else if((buttonPressed == "d") && this.posX>-0.11) {
 //				this.velocityX = 0;
@@ -176,20 +206,20 @@ public class Player {
 //			}
 //			System.out.println(this.velocityX);
 //		}
-		/**
-		 * Determines how to move right player based on button pressed and posX or posY 
-	     * @param indication of which button was pressed
-		*/
+//		/**
+//		 * Determines how to move right player based on button pressed and posX or posY 
+//	     * @param indication of which button was pressed
+//		*/
 //		public void moveRightPlayer(String buttonPressed) {
 //			if ((buttonPressed == "left") && this.posX > 0.21) {
 //				//key pressed changes velocity
-//				this.velocityX -= 0.003;
+//				this.velocityX -= 0.1;
 //			}
 //			else if((buttonPressed == "left") && this.posX>0.21) {
 //				this.velocityX = 0;
 //			}
 //			if ((buttonPressed == "right") && this.posX < 1.99) {
-//				this.velocityX += 0.003;
+//				this.velocityX += 0.1;
 //			}
 //			else if ((buttonPressed == "right") && this.posX>1.99) {
 //				this.velocityX = 0;
@@ -204,7 +234,6 @@ public class Player {
 		 * updates the position of a player by adding to its x position and y position and sets x and y velocity
 	     * @param indication of which button was pressed
 		*/
-		
 		public void updatePosition() {
 			this.posX += this.velocityX;
 			this.posY += this.velocityY;
@@ -218,7 +247,7 @@ public class Player {
 		
 		public void updateVelocity(double posY) {
 			if(posY > -0.95) {
-				this.velocityY = this.velocityY - 0.0000005;
+				this.velocityY = this.velocityY - 0.0000003;
 			}
 			this.velocityX = this.velocityX * 0.8;
 			
@@ -249,6 +278,20 @@ public class Player {
 			}
 			return "not valid button";
 		}
+		/**
+		 * Resets the players position after a goal is scored.
+		*/
+		
+		public void resetPos() {
+			if(player == 0) {
+				this.posX = -1.8;
+				this.velocityX = 0;
+			}
+			else if(player == 1) {
+				this.posX = 1.8;
+				this.velocityX = 0;
+			}
+		}
 
 		/**
 		 * get's the current x position
@@ -278,13 +321,21 @@ public class Player {
 		 * updates the y velocity to act in a way of gravity.
 		*/
 		public void gravity() {
-			this.velocityY = this.velocityY - 0.002;
+			this.velocityY = this.velocityY - 0.0005;
 		}
+		/**
+		 * Calculates the distance between player and ball
+		 * @param ball, distance is measured from.
+		*/
 		
 		public double calcBallDist(Ball b) {
 			double dist = Math.sqrt((this.posY - b.getPosY())*(this.posY - b.getPosY()) + (this.posX - b.getPosX())*(this.posX - b.getPosX()));
 			return dist;
 		}
+		/**
+		 * Sets the ball distance
+		 * @param ball, distance is measured from.
+		*/
 		
 		public void setBallDist(double dist) {
 			this.ballDistance = dist;

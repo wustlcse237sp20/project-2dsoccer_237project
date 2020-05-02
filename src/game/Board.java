@@ -42,6 +42,8 @@ public class Board {
 		StdDraw.setYscale(-1,1);
 		
 	}
+	
+	
 	/**
 	 * gets the time based on the current timer time
 	 * @params the current timer time
@@ -153,7 +155,9 @@ public class Board {
 		StdDraw.filledRectangle(-2.0, 0.4, 0.2, 0.8); 
 		StdDraw.filledRectangle(2.0,0.4,0.2,0.8);
 	}
-	
+	/**
+	 * draws the ground
+	*/
 	public void drawGround() {
 		StdDraw.setPenColor(Color.green);
 		StdDraw.filledRectangle(0, -1.1, 2.2, 0.05);
@@ -213,6 +217,25 @@ public class Board {
 		}
 		else if(player2.getPosY()<-0.95) {
 			player2.velocityY = 0;
+		}
+	}
+	
+	public void powerUpCheck(Player player1, Player player2, Ball ball) {
+		if(player1.getScore() == 2) {
+			player1.powerUp = true;
+			player2.powerDown = true;
+		}
+		if(player2.getScore() == 2) {
+			player2.powerUp = true;
+			player1.powerDown = true;
+		}
+		else if(player1.getScore() > 2) {
+			player1.powerUp = false;
+			player2.powerDown = false;
+		}
+		else if(player2.getScore() > 2) {
+			player2.powerUp = false;
+			player1.powerDown = false;
 		}
 	}
 
