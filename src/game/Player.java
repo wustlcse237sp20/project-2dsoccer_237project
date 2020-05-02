@@ -81,7 +81,7 @@ public class Player {
 						this.velocityX = 0;
 					}
 					if((ArcadeKeys.isKeyPressed(0, 0)) && this.posY<=-0.95) {
-						this.velocityY = 0.02;
+						this.velocityY = 0.03;
 					}
 
 				}
@@ -101,7 +101,7 @@ public class Player {
 						this.velocityX = 0;
 					}
 					if((ArcadeKeys.isKeyPressed(0, 0)) && this.posY<=-0.95) {
-						this.velocityY = 0.02;
+						this.velocityY = 0.03;
 					}
 				}
 				
@@ -121,7 +121,7 @@ public class Player {
 						this.velocityX = 0;
 					}
 					if((ArcadeKeys.isKeyPressed(1, 0)) && this.posY<=-0.95) {
-						this.velocityY = 0.02;
+						this.velocityY = 0.03;
 					}
 				}
 				else {
@@ -140,7 +140,7 @@ public class Player {
 						this.velocityX = 0;
 					}
 					if((ArcadeKeys.isKeyPressed(1, 0)) && this.posY<=-0.95) {
-						this.velocityY = 0.02;
+						this.velocityY = 0.03;
 					}
 				}
 				
