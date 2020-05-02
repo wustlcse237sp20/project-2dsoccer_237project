@@ -123,7 +123,7 @@ public class Board {
 	}
 	public boolean[] rerunGame(boolean decision, boolean isgameOver) {
 		boolean[] results = new boolean[2];
-		System.out.println("Would you like to play again");
+		System.out.println("Would you like to play again?(y/n)");
 		Scanner in = new Scanner(System.in);
 		String answer = in.nextLine().trim().toLowerCase();
 		if(answer.equals("y")) {
