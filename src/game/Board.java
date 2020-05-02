@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import sedgewick.StdDraw;
@@ -120,10 +121,39 @@ public class Board {
 			return "Tied Game";
 		}
 	}
+	public boolean[] rerunGame(boolean decision, boolean isgameOver) {
+		boolean[] results = new boolean[2];
+		System.out.println("Would you like to play again");
+		Scanner in = new Scanner(System.in);
+		String answer = in.nextLine().trim().toLowerCase();
+		if(answer.equals("y")) {
+			results[0] = true;
+			results[1] = false;
+		}
+		if(answer.equals("n")) {
+			results[0] = false;
+			results[1] = true;
+			drawFinalScreen();
+			
+		}
+		return results;
+	}
+	public void drawFinalScreen() {
+		StdDraw.setCanvasSize(1364,682);
+		StdDraw.setPenColor(Color.black);
+		StdDraw.filledRectangle(0.5, 0.5, 682, 384);
+		StdDraw.setPenColor(Color.white);
+		Font font = new Font("Arial", Font.BOLD, 60);
+		StdDraw.setFont(font);
+		StdDraw.text(0.5, 0.5, "Game Over");
+		font = new Font("Arial", Font.PLAIN, 16);
+		StdDraw.setFont(font);
+		StdDraw.text(0.5, 0.4, this.winner);
+		StdDraw.show(0);
+	}
 	/**
 	 * Draws the game over screen once there is no time left
 	*/
-	
 	public void drawGameOverScreen() {
 		StdDraw.setPenColor(Color.BLACK);
 		Font font = new Font("Arial", Font.BOLD, 60);
@@ -133,15 +163,25 @@ public class Board {
 		StdDraw.setFont(font2);
 		StdDraw.text(0,-0.2,this.winner);
 	}
-	
+	public void drawPlayAgain() {
+		StdDraw.setPenColor(Color.BLACK);
+		Font font = new Font("Arial", Font.BOLD, 60);
+		StdDraw.setFont(font);
+		StdDraw.text(0,0,"Game Over");
+		Font font2 = new Font("Arial", Font.PLAIN, 32);
+		StdDraw.setFont(font2);
+		StdDraw.text(0,-0.2,"Type y/n in console to continue or end game");
+		
+	}
 	/**
 	 * Based on the time decides whether game is over or not.
 	 * @params the current timer time
 	 * @return boolean indicating if game is over or not
 	*/
-	public boolean gameOver(int timer) {
+	public boolean gameOver(int timer, Player player1, Player player2) {
 		if(timer >= 60) {
-			drawGameOverScreen();
+			drawPlayAgain();
+			//drawGameOverScreen();
 			return true;
 		}
 		return false;
