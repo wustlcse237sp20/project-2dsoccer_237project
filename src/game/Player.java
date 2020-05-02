@@ -83,6 +83,7 @@ public class Player {
 					if((ArcadeKeys.isKeyPressed(0, 0)) && this.posY<=-0.95) {
 						this.velocityY = 0.02;
 					}
+
 				}
 				else {
 					if((ArcadeKeys.isKeyPressed(0, 1)) && this.posX<-0.11) {
@@ -230,6 +231,7 @@ public class Player {
 //			}
 //			
 //		}
+
 		/**
 		 * updates the position of a player by adding to its x position and y position and sets x and y velocity
 	     * @param indication of which button was pressed

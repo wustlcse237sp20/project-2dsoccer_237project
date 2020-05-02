@@ -133,6 +133,11 @@ public class Ball {
 		}
 		this.posY = this.posY + 0.05;
 	}
+	/**
+	 * when a player kicks the ball, the ball is assigned a fixed x and y velocity.
+	 * We will want to look into this to possibly make a more physics based approach.
+	 * @param i direction the ball should go. 0 is right, 1 is left.
+	 */
 	
 	/**
 	 * when a player kicks the ball, the ball is assigned a fixed x and y velocity.
