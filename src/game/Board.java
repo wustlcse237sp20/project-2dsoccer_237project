@@ -43,6 +43,18 @@ public class Board {
 		StdDraw.setYscale(-1,1);
 	}
 	/**
+	 * Draws everything necessary to run the game
+	 */
+	public void drawEverything(Player player1, Player player2, Ball ball, int count) {
+		drawGround();
+		drawTime(count);
+		drawScore(player1,player2);
+		drawPlayers(player1,player2);
+		drawBall(ball);
+		drawGoals();
+	}
+
+	/**
 	 * gets the time based on the current timer time
 	 * @params the current timer time
 	 * @return the beginning part of the time
@@ -99,7 +111,11 @@ public class Board {
 		String fullScore = playerOneScore + " - " + playerTwoScore;
 		StdDraw.text(0,.95,fullScore);
 	}
-	
+	/**
+	 * Imitaties a power up based on the player
+	 * @params player1 to be powered up
+	 * @params player2 to be powered up
+	*/
 	public void drawPowerUp(Player p1, Player p2) {
 		StdDraw.setPenColor(Color.RED);
 		Font font = new Font("Arial", Font.BOLD, 25);
@@ -129,23 +145,10 @@ public class Board {
 		}
 	}
 	/**
-	 * Determines whether to rerun game based on the input given to the console.
+	 * Determines whether to rerun game based on the key clicked whether that be a y or n
 	*/
 	public boolean[] rerunGame() {
 		boolean[] results = new boolean[2];
-//		System.out.println("Would you like to play again?(y/n)");
-//		Scanner in = new Scanner(System.in);
-//		String answer = in.nextLine().trim().toLowerCase();
-//		if(answer.equals("y")) {
-//			results[0] = true;
-//			results[1] = false;
-//		}
-//		if(answer.equals("n")) {
-//			results[0] = false;
-//			results[1] = true;
-//			drawFinalScreen();
-//			
-//		}
 		boolean loop = true;
 		while(loop) {
 			//(0,10) corresponds to 'y'
@@ -194,7 +197,7 @@ public class Board {
 		StdDraw.text(0,0,"Game Over");
 		Font font2 = new Font("Arial", Font.PLAIN, 32);
 		StdDraw.setFont(font2);
-		StdDraw.text(0,-0.2,"Cluck y/n to continue or end game");
+		StdDraw.text(0,-0.2,"Click y/n to continue or end game");
 		
 	}
 	/**
@@ -220,63 +223,26 @@ public class Board {
 		//drawing goal nets
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.setPenRadius(0.008);
-		//left goal
-		StdDraw.line(-2.2, -1.1, -1.8, -0.4);
-		StdDraw.line(-2.15, -1.1, -1.8, -0.5);
-		StdDraw.line(-2.1, -1.1, -1.8, -0.6);
-		StdDraw.line(-2.05, -1.1, -1.8, -0.7);
-		StdDraw.line(-2, -1.1, -1.8, -0.8);
-		StdDraw.line(-1.95, -1.1, -1.8, -0.9);
-		StdDraw.line(-2.25, -1.1, -1.85, -0.4);
-		StdDraw.line(-2.3, -1.1, -1.9, -0.4);
-		StdDraw.line(-2.35, -1.1, -1.95, -0.4);
-		StdDraw.line(-2.4, -1.1, -2, -0.4);
-		StdDraw.line(-2.45, -1.1, -2.05, -0.4);
-		StdDraw.line(-2.5, -1.1, -2.1, -0.4);
-		StdDraw.line(-2.55, -1.1, -2.15, -0.4);
-		//lines opposite direction
-		StdDraw.line(-2.2, -0.4, -1.8, -1.1);
-		StdDraw.line(-2.2, -0.5, -1.85, -1.1);
-		StdDraw.line(-2.2, -0.6, -1.9, -1.1);
-		StdDraw.line(-2.2, -0.7, -1.95, -1.1);
-		StdDraw.line(-2.2, -0.8, -2, -1.1);
-		StdDraw.line(-2.2, -0.9, -2.05, -1.1);
-		StdDraw.line(-2.2, -1, -2.1, -1.1);
-		StdDraw.line(-2.15, -0.4, -1.8, -1);
-		StdDraw.line(-2.1, -0.4, -1.8, -0.9);
-		StdDraw.line(-2.05, -0.4, -1.8, -0.8);
-		StdDraw.line(-2, -0.4, -1.8, -0.7);
-		StdDraw.line(-1.95, -0.4, -1.8, -0.6);
-		StdDraw.line(-1.9, -0.4, -1.8, -0.5);
 		
-		//right goal
-		StdDraw.line(2.2, -1.1, 1.8, -0.4);
-		StdDraw.line(2.15, -1.1, 1.8, -0.5);
-		StdDraw.line(2.1, -1.1, 1.8, -0.6);
-		StdDraw.line(2.05, -1.1, 1.8, -0.7);
-		StdDraw.line(2, -1.1, 1.8, -0.8);
-		StdDraw.line(1.95, -1.1, 1.8, -0.9);
-		StdDraw.line(2.25, -1.1, 1.85, -0.4);
-		StdDraw.line(2.3, -1.1, 1.9, -0.4);
-		StdDraw.line(2.35, -1.1, 1.95, -0.4);
-		StdDraw.line(2.4, -1.1, 2, -0.4);
-		StdDraw.line(2.45, -1.1, 2.05, -0.4);
-		StdDraw.line(2.5, -1.1, 2.1, -0.4);
-		StdDraw.line(2.55, -1.1, 2.15, -0.4);
-		//lines opposite direction
-		StdDraw.line(2.2, -0.4, 1.8, -1.1);
-		StdDraw.line(2.2, -0.5, 1.85, -1.1);
-		StdDraw.line(2.2, -0.6, 1.9, -1.1);
-		StdDraw.line(2.2, -0.7, 1.95, -1.1);
-		StdDraw.line(2.2, -0.8, 2, -1.1);
-		StdDraw.line(2.2, -0.9, 2.05, -1.1);
-		StdDraw.line(2.2, -1, 2.1, -1.1);
-		StdDraw.line(2.15, -0.4, 1.8, -1);
-		StdDraw.line(2.1, -0.4, 1.8, -0.9);
-		StdDraw.line(2.05, -0.4, 1.8, -0.8);
-		StdDraw.line(2, -0.4, 1.8, -0.7);
-		StdDraw.line(1.95, -0.4, 1.8, -0.6);
-		StdDraw.line(1.9, -0.4, 1.8, -0.5);
+		//left goal
+		for (double i = 0; i < 0.3; i += 0.05) {
+			//left goal
+			StdDraw.line(-2.2+i, -1.1, -1.8, -0.4-(2*i));
+			StdDraw.line(-2.15+i, -0.4, -1.8, -1+(2*i));
+			
+			//right goal
+			StdDraw.line(2.2-i, -1.1, 1.8, -0.4-(2*i));
+			StdDraw.line(2.15-i, -0.4, 1.8, -1+(2*i));
+		}
+		for(double i = 0; i<0.35; i+=0.05) {
+			//left goal
+			StdDraw.line(-2.25-i, -1.1, -1.85-i, -0.4);
+			StdDraw.line(-2.2, -0.4-(2*i), -1.8-i, -1.1);
+			
+			//right goal
+			StdDraw.line(2.25+i, -1.1, 1.85+i, -0.4);
+			StdDraw.line(2.2, -0.4-(2*i), 1.8+i, -1.1);
+		}
 		
 	}
 	/**
@@ -342,8 +308,12 @@ public class Board {
 			player2.velocityY = 0;
 		}
 	}
-	
-	public void powerUpCheck(Player player1, Player player2, Ball ball) {
+	/**
+	 * If a player has two goals then they are given a power up. Other players controls get reversed.
+	 * @param Player 1 to be powered up 
+     * @param Player 2 to be powered up
+	*/
+	public void powerUpCheckAndDraw(Player player1, Player player2, Ball ball) {
 		if(player1.getScore() == 2) {
 			player1.powerUp = true;
 			player2.powerDown = true;
@@ -360,6 +330,7 @@ public class Board {
 			player2.powerUp = false;
 			player1.powerDown = false;
 		}
+		drawPowerUp(player1, player2);
 	}
 
 }

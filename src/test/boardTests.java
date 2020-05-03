@@ -46,7 +46,7 @@ class boardTests {
 	@Test
 	void testHandleJumpingPlayer1A() {
 		board.handleJumping(player, player1);
-		assertEquals(-0.002,player.getvelocityY());
+		assertEquals(-0.0005,player.getvelocityY());
 	}
 	@Test
 	void testHandleJumpingPlayer1B() {
