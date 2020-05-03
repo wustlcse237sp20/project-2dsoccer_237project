@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,28 +28,34 @@ class ballTests {
 		ball4 = new Ball(0,0);
 		player = new Player(0,0,0);
 	}
-//	@Test
-//	void moveTest() {
-//		ball.move();
-//		assertEquals(0.505, ball.getPosX());
-//		assertEquals(0.5, ball.getPosY());
-//	}
-//	@Test 
-//	void updatePosition() {
-//		ball.updatePosition();
-//		assertEquals(0.495, ball.getPosX());
-//		assertEquals(0.5, ball.getPosY());
-//	}
+	@Test
+	void moveTest() {
+		HashSet<Double> set = new HashSet<Double>();
+		set.add(0.505);
+		set.add(0.495);
+		ball.move();
+		assertEquals(true, set.contains(ball.getPosX()));
+		assertEquals(0.5, ball.getPosY());
+	}
+	@Test 
+	void updatePosition() {
+		HashSet<Double> set = new HashSet<Double>();
+		set.add(0.505);
+		set.add(0.495);
+		ball.updatePosition();
+		assertEquals(true, set.contains(ball.getPosX()));
+		assertEquals(0.5, ball.getPosY());
+	}
 	@Test 
 	void isKickedTest() {
 		ball.isKicked(0);
-		assertEquals(0.02, ball.getvelocityX());
+		assertEquals(0.01, ball.getvelocityX());
 		assertEquals(0.03, ball.getvelocityY());
 	}
 	@Test
 	void isKickedTest1() {
 		ball.isKicked(1);
-		assertEquals(-0.02, ball.getvelocityX());
+		assertEquals(-0.01, ball.getvelocityX());
 		assertEquals(0.03, ball.getvelocityY());
 	}
 	@Test
@@ -67,8 +75,8 @@ class ballTests {
 	@Test
 	void updateVelocity() {
 		ball2.updateVelocity();
-		assertEquals(-0.0005, ball2.getvelocityY());
-		assertEquals(-1.8, ball2.getPosX());
+		assertEquals(-0.0003, ball2.getvelocityY());
+		assertEquals(-1.75, ball2.getPosX());
 		
 	}
 	@Test

@@ -33,7 +33,6 @@ public class Ball {
 	/**
 	 * draws the ball
 	 */
-	
 	public void draw() {
 		StdDraw.picture(this.posX, this.posY, "ball.png", this.radius*2, this.radius*2);
 		StdDraw.setPenColor(StdDraw.BLACK);
@@ -41,7 +40,6 @@ public class Ball {
 	/**
 	 * moves the ball's position on the screen
 	 */
-	
 	public void move() {
 		updatePosition();
 	}
@@ -53,8 +51,7 @@ public class Ball {
 		this.posX += this.velocityX;
 		this.posY += this.velocityY;
 		updateVelocity();
-	}
-	
+	}	
 	/**
 	 * Based on physics and game happenings, change velocities.
 	 */
@@ -95,7 +92,6 @@ public class Ball {
 	 * @param p1 player 1
 	 * @param p2 player 2
 	 */
-	
 	public void playerCollision(Player p1, Player p2) {
 		distP1 = calcDist(p1);
 		distP2 = calcDist(p2);
@@ -106,34 +102,19 @@ public class Ball {
 			hittingPlayer(p2);
 		}
 	}
-	
+	/**
+	 * Used in player collision, When distance between ball and player and sets those velocities.
+	 * @param player to be checked
+	 */
 	public void hittingPlayer(Player p) {
-		//getUnstuck(p);
 		this.velocityX = p.getvelocityX()*1.4 + this.velocityX;
 		this.velocityY = p.getvelocityY() + this.velocityY;
 	}
-	
-	public void getUnstuck(Player p) {
-		if(p.determinePlayer() == "Left Player") {
-			this.posX = this.posX + 0.05;
-		}
-		else if(p.determinePlayer() == "Right Player") {
-			this.posX = this.posX - 0.05;
-		}
-		this.posY = this.posY + 0.05;
-	}
 	/**
 	 * when a player kicks the ball, the ball is assigned a fixed x and y velocity.
 	 * We will want to look into this to possibly make a more physics based approach.
 	 * @param i direction the ball should go. 0 is right, 1 is left.
 	 */
-	
-	/**
-	 * when a player kicks the ball, the ball is assigned a fixed x and y velocity.
-	 * We will want to look into this to possibly make a more physics based approach.
-	 * @param i direction the ball should go. 0 is right, 1 is left.
-	 */
-	
 	public void isKicked(int i) {
 		if(i == 0) {
 			this.velocityX = 0.018;
@@ -144,11 +125,17 @@ public class Ball {
 			this.velocityY = 0.025;
 		}
 	}
-	
+	/**
+	 * Sets the x velocity
+	 * @param a double velocity to be used to change x velocity
+	 */
 	public void setVelocityX(double vX) {
 		this.velocityX = vX;
 	}
-	
+	/**
+	 * Sets the y velocity
+	 * @param a double velocity to be used to change y velocity
+	 */
 	public void setVelocityY(double vY) {
 		this.velocityY = vY;
 	}

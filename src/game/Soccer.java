@@ -48,7 +48,6 @@ public class Soccer {
 		ball.playerCollision(player1, player2);
 		player1.setBallDist(player1.calcBallDist(ball));
 		player2.setBallDist(player2.calcBallDist(ball));
-		
 		board.movePlayers(player1,player2);
 		board.moveBall(ball);
 		player1.kickBall(ball);
