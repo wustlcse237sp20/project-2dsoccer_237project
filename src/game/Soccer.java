@@ -20,7 +20,7 @@ public class Soccer {
 			Player player2 = new Player(1, -0.95, 1);
 			Ball ball = new Ball(0,0.5);
 			int timer = 0;
-			int count = 57;
+			int count = 0;
 			boolean isgameOver = false;
 			while(isgameOver == false) {
 				StdDraw.clear();
@@ -48,7 +48,6 @@ public class Soccer {
 		ball.playerCollision(player1, player2);
 		player1.setBallDist(player1.calcBallDist(ball));
 		player2.setBallDist(player2.calcBallDist(ball));
-		
 		board.movePlayers(player1,player2);
 		board.moveBall(ball);
 		player1.kickBall(ball);
