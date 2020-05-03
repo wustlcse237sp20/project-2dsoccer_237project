@@ -231,8 +231,8 @@ public class Board {
      * @param Player 2 to be drawn
 	*/
 	public void drawPlayers(Player player1, Player player2) {
-		player1.draw();
-		player2.draw();
+		player1.drawPlayer1();
+		player2.drawPlayer2();
 	}
 	/**
 	 * moves players based on the key that is pressed. Movement implementation is in Player.java
