@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 import sedgewick.StdDraw;
 import cse131.ArgsProcessor;
 import java.awt.Color;
+import java.awt.Font;
 public class Soccer {
 	private Player player1;
 	private Player player2;
@@ -38,14 +39,20 @@ public class Soccer {
 			decision = runGameSettings[0];
 			isgameOver = runGameSettings[1];
 		}		
-					
+		
 
 	}
 	private static boolean runGame(Board board, Player player1, Player player2, Ball ball, int count) {
 		//Checks to see if game is over based on time
-		boolean isgameOver = board.gameOver(count);		
+		boolean isgameOver = board.gameOver(count);	
+		
+		//draw names
+		Font font = new Font("Arial",Font.PLAIN, 25);
+		StdDraw.setFont(font);
+		StdDraw.setPenColor(Color.RED);
 		StdDraw.text(-1.6, 0.9, player1.name);
 		StdDraw.text(1.6, 0.9, player2.name);
+		
 
 		board.drawEverything(player1, player2, ball, count);		
 		board.powerUpCheckAndDraw(player1, player2, ball);
