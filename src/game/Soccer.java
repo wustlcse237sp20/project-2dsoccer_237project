@@ -20,7 +20,7 @@ public class Soccer {
 			Player player2 = new Player(1, -0.95, 1);
 			Ball ball = new Ball(0,0.5);
 			int timer = 0;
-			int count = 0;
+			int count = 57;
 			boolean isgameOver = false;
 			while(isgameOver == false) {
 				StdDraw.clear();
