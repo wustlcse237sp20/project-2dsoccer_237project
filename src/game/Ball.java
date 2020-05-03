@@ -33,16 +33,13 @@ public class Ball {
 	/**
 	 * draws the ball
 	 */
-	
 	public void draw() {
-		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.filledCircle(this.posX, this.posY, this.radius);
+		StdDraw.picture(this.posX, this.posY, "ball.png", this.radius*2, this.radius*2);
 		StdDraw.setPenColor(StdDraw.BLACK);
 	}
 	/**
 	 * moves the ball's position on the screen
 	 */
-	
 	public void move() {
 		updatePosition();
 	}
@@ -54,34 +51,23 @@ public class Ball {
 		this.posX += this.velocityX;
 		this.posY += this.velocityY;
 		updateVelocity();
-	}
-	
+	}	
 	/**
 	 * Based on physics and game happenings, change velocities.
 	 */
 	public void updateVelocity() {
 		//gravity
 		if(posY > -1) {
-			this.velocityY = this.velocityY - 0.0005;
+			this.velocityY = this.velocityY - 0.0003;
 		}
 		//left upper wall bounce
-		if(posX < -1.8 && posY > -0.4) {
-			this.posX = -1.8;
+		if(posX < -1.75 && posY > -0.4) {
+			this.posX = -1.75;
 			this.velocityX = this.velocityX * -0.9;
 		}
 		//right upper wall bounce
-		if(posX > 1.8 && posY > -0.4) {
-			this.posX = 1.8;
-			this.velocityX = this.velocityX * -0.9;
-		}
-		//left bounce
-		if(posX < -2.1) {
-			this.posX = -2.1;
-			this.velocityX = this.velocityX * -0.9;
-		}
-		//right bounce
-		if(posX > 2.1) {
-			this.posX = 2.1;
+		if(posX > 1.75 && posY > -0.4) {
+			this.posX = 1.75;
 			this.velocityX = this.velocityX * -0.9;
 		}
 		//ground bounce
@@ -106,44 +92,50 @@ public class Ball {
 	 * @param p1 player 1
 	 * @param p2 player 2
 	 */
-	
 	public void playerCollision(Player p1, Player p2) {
 		distP1 = calcDist(p1);
 		distP2 = calcDist(p2);
 		if(distP1 <= 0.12) {
-			this.posX = this.posX + 0.05;
-			this.posY = this.posY + 0.05;
-			this.velocityX = p1.getvelocityX()*1.6;
-			this.velocityY = p1.getvelocityY()*0.7;
+			hittingPlayer(p1);
 		}
 		if(distP2 <= 0.12) {
-			this.posX = this.posX - 0.05;
-			this.posY = this.posY + 0.05;
-			this.velocityX = p2.getvelocityX()*1.6;
-			this.velocityY = p2.getvelocityY()*0.7;
+			hittingPlayer(p2);
 		}
+	}
+	/**
+	 * Used in player collision, When distance between ball and player and sets those velocities.
+	 * @param player to be checked
+	 */
+	public void hittingPlayer(Player p) {
+		this.velocityX = p.getvelocityX()*1.4 + this.velocityX;
+		this.velocityY = p.getvelocityY() + this.velocityY;
 	}
 	/**
 	 * when a player kicks the ball, the ball is assigned a fixed x and y velocity.
 	 * We will want to look into this to possibly make a more physics based approach.
 	 * @param i direction the ball should go. 0 is right, 1 is left.
 	 */
-	
 	public void isKicked(int i) {
 		if(i == 0) {
-			this.velocityX = 0.02;
-			this.velocityY = 0.03;
+			this.velocityX = 0.018;
+			this.velocityY = 0.025;
 		}
 		else if(i == 1) {
-			this.velocityX = -0.02;
-			this.velocityY = 0.03;
+			this.velocityX = -0.018;
+			this.velocityY = 0.025;
 		}
 	}
-	
+	/**
+	 * Sets the x velocity
+	 * @param a double velocity to be used to change x velocity
+	 */
 	public void setVelocityX(double vX) {
 		this.velocityX = vX;
 	}
-	
+	/**
+	 * Sets the y velocity
+	 * @param a double velocity to be used to change y velocity
+	 */
 	public void setVelocityY(double vY) {
 		this.velocityY = vY;
 	}
