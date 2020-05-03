@@ -44,6 +44,15 @@ public class Board {
 	}
 	
 	
+	public void drawEverything(Player player1, Player player2, Ball ball, int count) {
+		drawGround();
+		drawTime(count);
+		drawScore(player1,player2);
+		drawPlayers(player1,player2);
+		drawBall(ball);
+		drawGoals();
+	}
+	
 	/**
 	 * gets the time based on the current timer time
 	 * @params the current timer time
@@ -260,7 +269,7 @@ public class Board {
 		}
 	}
 	
-	public void powerUpCheck(Player player1, Player player2, Ball ball) {
+	public void powerUpCheckAndDraw(Player player1, Player player2, Ball ball) {
 		if(player1.getScore() == 2) {
 			player1.powerUp = true;
 			player2.powerDown = true;
@@ -277,6 +286,7 @@ public class Board {
 			player2.powerUp = false;
 			player1.powerDown = false;
 		}
+		drawPowerUp(player1, player2);
 	}
 
 }
