@@ -43,7 +43,6 @@ public class Board {
 		
 	}
 	
-	
 	public void drawEverything(Player player1, Player player2, Ball ball, int count) {
 		drawGround();
 		drawTime(count);
@@ -58,7 +57,6 @@ public class Board {
 	 * @params the current timer time
 	 * @return the beginning part of the time
 	*/
-	
 	public String getTime(int timer) {
 		if(timer < 10 && timer >= 0) {
 			return "00:0";
@@ -274,18 +272,20 @@ public class Board {
 			player1.powerUp = true;
 			player2.powerDown = true;
 		}
-		if(player2.getScore() == 2) {
-			player2.powerUp = true;
-			player1.powerDown = true;
-		}
 		else if(player1.getScore() > 2) {
 			player1.powerUp = false;
 			player2.powerDown = false;
+		}
+		if(player2.getScore() == 2) {
+			player2.powerUp = true;
+			player1.powerDown = true;
 		}
 		else if(player2.getScore() > 2) {
 			player2.powerUp = false;
 			player1.powerDown = false;
 		}
+		
+		
 		drawPowerUp(player1, player2);
 	}
 
