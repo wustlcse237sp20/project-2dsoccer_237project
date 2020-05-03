@@ -49,14 +49,14 @@ class ballTests {
 	@Test 
 	void isKickedTest() {
 		ball.isKicked(0);
-		assertEquals(0.01, ball.getvelocityX());
-		assertEquals(0.03, ball.getvelocityY());
+		assertEquals(0.018, ball.getvelocityX());
+		assertEquals(0.025, ball.getvelocityY());
 	}
 	@Test
 	void isKickedTest1() {
 		ball.isKicked(1);
-		assertEquals(-0.01, ball.getvelocityX());
-		assertEquals(0.03, ball.getvelocityY());
+		assertEquals(-0.018, ball.getvelocityX());
+		assertEquals(0.025, ball.getvelocityY());
 	}
 	@Test
 	void calcDistanceTest() {
