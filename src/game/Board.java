@@ -14,7 +14,7 @@ public class Board {
 	/**
 	 * Starts by setting up the splash screen, which then leads to our main screen after the user presses the mouse
 	 */
-	public void setupScreen() {
+	public void setupScreen(String name1, String name2) {
 		StdDraw.setCanvasSize(1364,682);
 		StdDraw.setPenColor(Color.black);
 		StdDraw.filledRectangle(0.5, 0.5, 682, 384);
@@ -22,6 +22,7 @@ public class Board {
 		Font font = new Font("Arial", Font.BOLD, 60);
 		StdDraw.setFont(font);
 		StdDraw.text(0.5, 0.8, "2-D Soccer");
+		StdDraw.text(0.5, 0.2, name1 + " v.s. " + name2);
 		font = new Font("Arial", Font.PLAIN, 16);
 		StdDraw.setFont(font);
 		StdDraw.text(0.5, 0.6, "Move left player with keys : A   W   D");
