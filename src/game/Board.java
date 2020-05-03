@@ -196,7 +196,7 @@ public class Board {
 		StdDraw.text(0,0,"Game Over");
 		Font font2 = new Font("Arial", Font.PLAIN, 32);
 		StdDraw.setFont(font2);
-		StdDraw.text(0,-0.2,"Cluck y/n to continue or end game");
+		StdDraw.text(0,-0.2,"Click y/n to continue or end game");
 		
 	}
 	/**
@@ -204,7 +204,7 @@ public class Board {
 	 * @params the current timer time
 	 * @return boolean indicating if game is over or not
 	*/
-	public boolean gameOver(int timer) {
+	public boolean gameOver(int timer, Player player1, Player player2) {
 		if(timer >= 60) {
 			drawPlayAgain();
 			return true;
