@@ -19,6 +19,44 @@ public class Player {
 		private int score;
 		public boolean powerUp = false;
 		public boolean powerDown = false; //true if the opposing player has a powerUp
+		private int a = this.random(0);
+		private int b = this.random(0);
+		
+		public int random(int z){
+			int a = 0;
+			double random = Math.random();
+			if(random>=.9) {
+				z = 10;
+			}
+			else if(random>=.8) {
+				z = 9;
+			}
+			else if(random>=.7) {
+				z = 8;
+			}
+			else if(random>=.6) {
+				z = 7;
+			}
+			else if(random>=.5) {
+				z = 6;
+			}
+			else if(random>=.4) {
+				z = 5;
+			}
+			else if(random>=.3) {
+				z = 4;
+			}
+			else if(random>=.2) {
+				z = 3;
+			}
+			else if(random>=.1) {
+				z = 2;
+			}
+			else {
+				z = 1;
+			}
+			return z;
+		}
 
 
 		public Player(double x, double y, int player) {
@@ -51,14 +89,38 @@ public class Player {
 		/**
 		 * draws players
 		 */
-		public void draw() {
+		public void drawPlayer1() {
 			if(this.powerDown == true) { //red color indicates the controls are reversed.
 				StdDraw.setPenColor(StdDraw.RED);
 			}
 			else {
 				StdDraw.setPenColor(StdDraw.BLACK);
 			}
-			StdDraw.filledRectangle(this.posX, this.posY, this.width/2, this.height/2);
+		//	StdDraw.filledRectangle(this.posX, this.posY, this.width/2, this.height/2);
+
+			StdDraw.picture(this.posX, this.posY, "character" + a + " copy.png", this.width, this.height);
+			
+		
+			StdDraw.setPenColor(StdDraw.BLACK);
+		}
+		public void drawPlayer2() {
+			if(this.powerDown == true) { //red color indicates the controls are reversed.
+				StdDraw.setPenColor(StdDraw.RED);
+			}
+			else {
+				StdDraw.setPenColor(StdDraw.BLACK);
+			}
+			
+			if(a==b) {
+				if(b==10) {
+					b--;
+				}
+				else {
+					b++;
+				}
+			}
+			StdDraw.picture(this.posX, this.posY, "character" + b + ".png", this.width, this.height);
+			
 			StdDraw.setPenColor(StdDraw.BLACK);
 		}
 		/**
