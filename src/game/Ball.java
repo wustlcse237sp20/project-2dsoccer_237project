@@ -65,13 +65,13 @@ public class Ball {
 			this.velocityY = this.velocityY - 0.0003;
 		}
 		//left upper wall bounce
-		if(posX < -1.8 && posY > -0.4) {
-			this.posX = -1.8;
+		if(posX < -1.75 && posY > -0.4) {
+			this.posX = -1.75;
 			this.velocityX = this.velocityX * -0.9;
 		}
 		//right upper wall bounce
-		if(posX > 1.8 && posY > -0.4) {
-			this.posX = 1.8;
+		if(posX > 1.75 && posY > -0.4) {
+			this.posX = 1.75;
 			this.velocityX = this.velocityX * -0.9;
 		}
 		//left bounce
