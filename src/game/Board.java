@@ -138,9 +138,9 @@ public class Board {
 	*/
 	public String determineWinner(Player player1, Player player2) {
 		if(player1.getScore() > player2.getScore()) {
-			return "Player 1 wins";
+			return player1.name + " wins";
 		}else if(player2.getScore() > player1.getScore()) {
-			return "Player 2 wins";
+			return player2.name + " wins";
 		}else {
 			return "Tied Game";
 		}
@@ -183,6 +183,7 @@ public class Board {
 		Font font = new Font("Arial", Font.BOLD, 60);
 		StdDraw.setFont(font);
 		StdDraw.text(0.5, 0.5, "Game Over");
+		
 		font = new Font("Arial", Font.PLAIN, 16);
 		StdDraw.setFont(font);
 		StdDraw.text(0.5, 0.4, this.winner);
@@ -196,6 +197,7 @@ public class Board {
 		Font font = new Font("Arial", Font.BOLD, 60);
 		StdDraw.setFont(font);
 		StdDraw.text(0,0,"Game Over");
+		StdDraw.text(0, -0.5, this.winner);
 		Font font2 = new Font("Arial", Font.PLAIN, 32);
 		StdDraw.setFont(font2);
 		StdDraw.text(0,-0.2,"Click y/n to continue or end game");
