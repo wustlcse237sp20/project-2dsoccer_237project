@@ -2,15 +2,15 @@ package game;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import sedgewick.ArcadeKeys;
 import sedgewick.StdDraw;
 
 public class Board {
-	
 	// The variable to hold who wins the game at the end of time.
 	private String winner;
-
 	/**
 	 * Starts by setting up the splash screen, which then leads to our main screen after the user presses the mouse
 	 */
@@ -40,10 +40,7 @@ public class Board {
 		// sets up new scale so when players are drawn.
 		StdDraw.setXscale(-2,2);
 		StdDraw.setYscale(-1,1);
-		
 	}
-	
-	
 	public void drawEverything(Player player1, Player player2, Ball ball, int count) {
 		drawGround();
 		drawTime(count);
@@ -52,13 +49,12 @@ public class Board {
 		drawBall(ball);
 		drawGoals();
 	}
-	
+
 	/**
 	 * gets the time based on the current timer time
 	 * @params the current timer time
 	 * @return the beginning part of the time
 	*/
-	
 	public String getTime(int timer) {
 		if(timer < 10 && timer >= 0) {
 			return "00:0";
@@ -75,7 +71,6 @@ public class Board {
 	 * @params the current timer time
 	 * @return the time that should be displayed
 	*/
-	
 	public String Timer(int timer) {
 		String time = getTime(timer);
 		String fullTime = time + timer;
@@ -90,7 +85,6 @@ public class Board {
 	 * draws the time that should be displayed on the screen with the field.
 	 * @params the current timer time
 	*/
-	
 	public void drawTime(int timer) {
 		StdDraw.setPenColor(Color.BLACK);
 		Font font = new Font("Arial",Font.PLAIN, 16);
@@ -103,7 +97,6 @@ public class Board {
 	 * @params player1 points to be drawn
 	 * @params player2 poitns to be drawn.
 	*/
-	
 	public void drawScore(Player player1, Player player2) {
 		StdDraw.setPenColor(Color.BLACK);
 		Font font = new Font("Arial", Font.BOLD, 48);
@@ -134,7 +127,6 @@ public class Board {
 	 * @params player1 points 
 	 * @params player2 poitns 
 	*/
-	
 	public String determineWinner(Player player1, Player player2) {
 		if(player1.getScore() > player2.getScore()) {
 			return "Player 1 wins";
@@ -145,32 +137,86 @@ public class Board {
 		}
 	}
 	/**
-	 * Draws the game over screen once there is no time left
+	 * Determines whether to rerun game based on the input given to the console.
 	*/
-	
-	public void drawGameOverScreen() {
+	public boolean[] rerunGame() {
+		boolean[] results = new boolean[2];
+//		System.out.println("Would you like to play again?(y/n)");
+//		Scanner in = new Scanner(System.in);
+//		String answer = in.nextLine().trim().toLowerCase();
+//		if(answer.equals("y")) {
+//			results[0] = true;
+//			results[1] = false;
+//		}
+//		if(answer.equals("n")) {
+//			results[0] = false;
+//			results[1] = true;
+//			drawFinalScreen();
+//			
+//		}
+		boolean loop = true;
+		while(loop) {
+			//(0,10) corresponds to 'y'
+			if(ArcadeKeys.isKeyPressed(0, 10)) {
+				results[0] = true;
+				results[1] = false;
+				loop = false;
+				StdDraw.pause(500);
+				break;
+			}
+			//(2,10) corresponds to 'n'
+			if(ArcadeKeys.isKeyPressed(2, 10)) {
+				results[0] = false;
+				results[1] = true;
+				drawFinalScreen();
+				loop = false;
+				StdDraw.pause(500);
+				break;
+			}
+		}
+		return results;
+	}
+	/**
+	 * Draw the final screen, shown when the user doesn't want to continute the round.
+	*/
+	public void drawFinalScreen() {
+		StdDraw.setCanvasSize(1364,682);
+		StdDraw.setPenColor(Color.black);
+		StdDraw.filledRectangle(0.5, 0.5, 682, 384);
+		StdDraw.setPenColor(Color.white);
+		Font font = new Font("Arial", Font.BOLD, 60);
+		StdDraw.setFont(font);
+		StdDraw.text(0.5, 0.5, "Game Over");
+		font = new Font("Arial", Font.PLAIN, 16);
+		StdDraw.setFont(font);
+		StdDraw.text(0.5, 0.4, this.winner);
+		StdDraw.show(0);
+	}
+	/**
+	 * Draw the screen to play gain asking to type in the console.
+	*/
+	public void drawPlayAgain() {
 		StdDraw.setPenColor(Color.BLACK);
 		Font font = new Font("Arial", Font.BOLD, 60);
 		StdDraw.setFont(font);
 		StdDraw.text(0,0,"Game Over");
 		Font font2 = new Font("Arial", Font.PLAIN, 32);
 		StdDraw.setFont(font2);
-		StdDraw.text(0,-0.2,this.winner);
+		StdDraw.text(0,-0.2,"Cluck y/n to continue or end game");
+		
 	}
-	
 	/**
 	 * Based on the time decides whether game is over or not.
 	 * @params the current timer time
 	 * @return boolean indicating if game is over or not
 	*/
-	public boolean gameOver(int timer) {
+	public boolean gameOver(int timer, Player player1, Player player2) {
 		if(timer >= 60) {
-			drawGameOverScreen();
+			drawPlayAgain();
 			return true;
 		}
 		return false;
 	}
-	
 	/**
 	 * draws two sets of goals (one on each side)
 	*/
@@ -212,7 +258,6 @@ public class Board {
 		StdDraw.filledRectangle(0, -1.1, 2.2, 0.05);
 		StdDraw.setPenColor(Color.black);
 	}
-	
 	/**
 	 * draws each individual player on the screen 
 	 * @param Player 1 to be drawn
