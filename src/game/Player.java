@@ -26,7 +26,7 @@ public class Player {
 			int a = 0;
 			double random = Math.random();
 			if(random>=.9) {
-				z = 10;
+				z = 9;
 			}
 			else if(random>=.8) {
 				z = 9;
