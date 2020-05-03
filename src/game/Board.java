@@ -132,18 +132,38 @@ public class Board {
 	*/
 	public boolean[] rerunGame() {
 		boolean[] results = new boolean[2];
-		System.out.println("Would you like to play again?(y/n)");
-		Scanner in = new Scanner(System.in);
-		String answer = in.nextLine().trim().toLowerCase();
-		if(answer.equals("y")) {
-			results[0] = true;
-			results[1] = false;
-		}
-		if(answer.equals("n")) {
-			results[0] = false;
-			results[1] = true;
-			drawFinalScreen();
-			
+//		System.out.println("Would you like to play again?(y/n)");
+//		Scanner in = new Scanner(System.in);
+//		String answer = in.nextLine().trim().toLowerCase();
+//		if(answer.equals("y")) {
+//			results[0] = true;
+//			results[1] = false;
+//		}
+//		if(answer.equals("n")) {
+//			results[0] = false;
+//			results[1] = true;
+//			drawFinalScreen();
+//			
+//		}
+		boolean loop = true;
+		while(loop) {
+			//(0,10) corresponds to 'y'
+			if(ArcadeKeys.isKeyPressed(0, 10)) {
+				results[0] = true;
+				results[1] = false;
+				loop = false;
+				StdDraw.pause(500);
+				break;
+			}
+			//(2,10) corresponds to 'n'
+			if(ArcadeKeys.isKeyPressed(2, 10)) {
+				results[0] = false;
+				results[1] = true;
+				drawFinalScreen();
+				loop = false;
+				StdDraw.pause(500);
+				break;
+			}
 		}
 		return results;
 	}
@@ -173,7 +193,7 @@ public class Board {
 		StdDraw.text(0,0,"Game Over");
 		Font font2 = new Font("Arial", Font.PLAIN, 32);
 		StdDraw.setFont(font2);
-		StdDraw.text(0,-0.2,"Type y/n in console to continue or end game");
+		StdDraw.text(0,-0.2,"Cluck y/n to continue or end game");
 		
 	}
 	/**
