@@ -22,8 +22,7 @@ public class Board {
 		Font font = new Font("Arial", Font.BOLD, 60);
 		StdDraw.setFont(font);
 		StdDraw.text(0.5, 0.8, "2-D Soccer");
-		StdDraw.text(0.2, 0.5, name1);
-		StdDraw.text(0.8, 0.5, name2);
+		StdDraw.text(0.5, 0.2, name1 + " v.s. " + name2);
 		font = new Font("Arial", Font.PLAIN, 16);
 		StdDraw.setFont(font);
 		StdDraw.text(0.5, 0.6, "Move left player with keys : A   W   D");
