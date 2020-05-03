@@ -6,7 +6,7 @@ import sedgewick.ArcadeKeys;
 import sedgewick.StdDraw;
 
 public class Player {
-		
+		public String name;
 		private double posX;
 		private double posY; 
 		public double velocityX;
@@ -29,6 +29,10 @@ public class Player {
 			this.startPosX = x;
 			this.startPosY = y;
 			this.player = player;
+		}
+		
+		public void setName(String name) {
+			this.name = name;
 		}
 		/**
 		 * Ensures that random number generated is between 1-9
