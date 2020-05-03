@@ -42,6 +42,7 @@ public class Board {
 		StdDraw.setXscale(-2,2);
 		StdDraw.setYscale(-1,1);
 	}
+
 	/**
 	 * Draws everything necessary to run the game
 	 */
@@ -318,18 +319,19 @@ public class Board {
 			player1.powerUp = true;
 			player2.powerDown = true;
 		}
-		if(player2.getScore() == 2) {
-			player2.powerUp = true;
-			player1.powerDown = true;
-		}
 		else if(player1.getScore() > 2) {
 			player1.powerUp = false;
 			player2.powerDown = false;
+		}
+		if(player2.getScore() == 2) {
+			player2.powerUp = true;
+			player1.powerDown = true;
 		}
 		else if(player2.getScore() > 2) {
 			player2.powerUp = false;
 			player1.powerDown = false;
 		}
+		
 		drawPowerUp(player1, player2);
 	}
 

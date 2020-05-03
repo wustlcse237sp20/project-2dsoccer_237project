@@ -30,8 +30,8 @@ public class Soccer {
 				}
 				timer+=1;
 			}
-			// because you cant pass variables in by refreunce just get new values
-			// from returing and array - 
+			// because you can't pass variables in by reference just get new values
+			// from returning and array - 
 			boolean[] runGameSettings = board.rerunGame();
 			decision = runGameSettings[0];
 			isgameOver = runGameSettings[1];
@@ -44,6 +44,7 @@ public class Soccer {
 		boolean isgameOver = board.gameOver(count);		
 		StdDraw.text(-1.6, 0.9, name1);
 		StdDraw.text(1.6, 0.9, name2);
+
 		board.drawEverything(player1, player2, ball, count);		
 		board.powerUpCheckAndDraw(player1, player2, ball);
 		ball.playerCollision(player1, player2);

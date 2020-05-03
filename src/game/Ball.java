@@ -70,16 +70,6 @@ public class Ball {
 			this.posX = 1.75;
 			this.velocityX = this.velocityX * -0.9;
 		}
-		//left bounce
-		if(posX < -2.1) {
-			this.posX = -2.1;
-			this.velocityX = this.velocityX * -0.9;
-		}
-		//right bounce
-		if(posX > 2.1) {
-			this.posX = 2.1;
-			this.velocityX = this.velocityX * -0.9;
-		}
 		//ground bounce
 		if(posY < -1) {
 			this.posY = -1;
@@ -127,12 +117,12 @@ public class Ball {
 	 */
 	public void isKicked(int i) {
 		if(i == 0) {
-			this.velocityX = 0.01;
-			this.velocityY = 0.03;
+			this.velocityX = 0.018;
+			this.velocityY = 0.025;
 		}
 		else if(i == 1) {
-			this.velocityX = -0.01;
-			this.velocityY = 0.03;
+			this.velocityX = -0.018;
+			this.velocityY = 0.025;
 		}
 	}
 	/**
