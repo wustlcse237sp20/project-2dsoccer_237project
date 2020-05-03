@@ -1,4 +1,4 @@
 #!/bin/bash
 #
-javac Soccer.java
+javac game/Soccer.java
 java Soccer

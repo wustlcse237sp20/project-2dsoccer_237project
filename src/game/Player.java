@@ -391,7 +391,6 @@ public class Player {
 		 * Calculates the distance between player and ball
 		 * @param ball, distance is measured from.
 		*/
-		
 		public double calcBallDist(Ball b) {
 			double dist = Math.sqrt((this.posY - b.getPosY())*(this.posY - b.getPosY()) + (this.posX - b.getPosX())*(this.posX - b.getPosX()));
 			return dist;
@@ -400,7 +399,6 @@ public class Player {
 		 * Sets the ball distance
 		 * @param ball, distance is measured from.
 		*/
-		
 		public void setBallDist(double dist) {
 			this.ballDistance = dist;
 		}

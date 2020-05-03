@@ -11,6 +11,9 @@ public class Soccer {
 	
 
 	public static void main(String[] args) {
+		
+		boolean decision = true;
+		while(decision == true) {
 			Board board = new Board();
 			board.setupScreen();
 			Player player1 = new Player(-1, -0.95, 0); //Not calling "Player" causes static/non static error
@@ -28,6 +31,13 @@ public class Soccer {
 				}
 				timer+=1;
 			}
+			// because you cant pass variables in by refreunce just get new values
+			// from returing and array - 
+			boolean[] runGameSettings = board.rerunGame();
+			decision = runGameSettings[0];
+			isgameOver = runGameSettings[1];
+		}		
+					
 	}
 
 	private static boolean runGame(Board board, Player player1, Player player2, Ball ball, int count) {
@@ -36,7 +46,8 @@ public class Soccer {
 		board.drawTime(count);
 		board.drawScore(player1,player2);
 		//Checks to see if game is over based on time
-		isgameOver = board.gameOver(count);
+		isgameOver = board.gameOver(count, player1, player2);
+		board.drawGoals();
 		board.drawPlayers(player1,player2);
 		board.drawBall(ball);
 		board.drawGoals();
@@ -56,7 +67,5 @@ public class Soccer {
 		board.handleJumping(player1, player2);
 		return isgameOver;
 	}
-	
-	
 
 }
