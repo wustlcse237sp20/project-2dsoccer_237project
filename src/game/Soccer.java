@@ -37,9 +37,9 @@ public class Soccer {
 		board.drawScore(player1,player2);
 		//Checks to see if game is over based on time
 		isgameOver = board.gameOver(count);
-		board.drawGoals();
 		board.drawPlayers(player1,player2);
 		board.drawBall(ball);
+		board.drawGoals();
 		board.powerUpCheck(player1, player2, ball);
 		board.movePlayers(player1,player2);
 		ball.playerCollision(player1, player2);

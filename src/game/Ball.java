@@ -118,9 +118,9 @@ public class Ball {
 	}
 	
 	public void hittingPlayer(Player p) {
-		getUnstuck(p);
-		this.velocityX = p.getvelocityX()*1.4;
-		this.velocityY = p.getvelocityY()*1;
+		//getUnstuck(p);
+		this.velocityX = p.getvelocityX()*1.4 + this.velocityX;
+		this.velocityY = p.getvelocityY() + this.velocityY;
 	}
 	
 	public void getUnstuck(Player p) {

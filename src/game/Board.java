@@ -187,6 +187,7 @@ public class Board {
 		StdDraw.line(-1.95, -0.4, -1.8, -0.6);
 		StdDraw.line(-1.9, -0.4, -1.8, -0.5);
 		
+		//right goal
 		StdDraw.line(2.2, -1.1, 1.8, -0.4);
 		StdDraw.line(2.15, -1.1, 1.8, -0.5);
 		StdDraw.line(2.1, -1.1, 1.8, -0.6);
