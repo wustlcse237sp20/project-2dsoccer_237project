@@ -22,7 +22,7 @@ public class Board {
 		Font font = new Font("Arial", Font.BOLD, 60);
 		StdDraw.setFont(font);
 		StdDraw.text(0.5, 0.8, "2-D Soccer");
-		StdDraw.text(0.5, 0.2, name1 + " v.s. " + name2);
+		StdDraw.text(0.5, 0.2, name1 + "     vs    " + name2);
 		font = new Font("Arial", Font.PLAIN, 16);
 		StdDraw.setFont(font);
 		StdDraw.text(0.5, 0.6, "Move left player with keys : A   W   D");
@@ -205,7 +205,7 @@ public class Board {
 	 * @params the current timer time
 	 * @return boolean indicating if game is over or not
 	*/
-	public boolean gameOver(int timer, Player player1, Player player2) {
+	public boolean gameOver(int timer) {
 		if(timer >= 60) {
 			drawPlayAgain();
 			return true;

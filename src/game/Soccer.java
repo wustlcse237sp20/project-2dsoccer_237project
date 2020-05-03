@@ -10,40 +10,39 @@ public class Soccer {
 	public static void main(String[] args) {
 		ArgsProcessor ap = new ArgsProcessor(args);
 		boolean decision = true;
+		String player1Name = ap.nextString("Player 1 name?");
+		String player2Name = ap.nextString("Player 2 name?");	
 		while(decision == true) {
-			String player1Name = ap.nextString("Player 1 name?");
-			String player2Name = ap.nextString("Player 2 name?");	
-			while(decision == true) {
-				Board board = new Board();
-				board.setupScreen(player1Name, player2Name);
-				Player player1 = new Player(-1, -0.95, 0); //Not calling "Player" causes static/non static error
-				Player player2 = new Player(1, -0.95, 1);
-				Ball ball = new Ball(0,0.5);
-				int timer = 0;
-				int count = 57;
-				boolean isgameOver = false;
-				while(isgameOver == false) {
-					StdDraw.clear();
-					StdDraw.picture(0,0,"background.png");
-					isgameOver = runGame(board, player1, player2, ball, count, player1Name, player2Name);
-					if(timer % 100 == 0) {
-						count++;
-					}
-					timer+=1;
+			Board board = new Board();
+			board.setupScreen(player1Name, player2Name);
+			Player player1 = new Player(-1, -0.95, 0); //Not calling "Player" causes static/non static error
+			Player player2 = new Player(1, -0.95, 1);
+			Ball ball = new Ball(0,0.5);
+			int timer = 0;
+			int count = 0;
+			boolean isgameOver = false;
+			while(isgameOver == false) {
+				StdDraw.clear();
+				StdDraw.picture(0,0,"background.png");
+				isgameOver = runGame(board, player1, player2, ball, count, player1Name, player2Name);
+				if(timer % 100 == 0) {
+					count++;
 				}
-				// because you cant pass variables in by refreunce just get new values
-				// from returing and array - 
-				boolean[] runGameSettings = board.rerunGame();
-				decision = runGameSettings[0];
-				isgameOver = runGameSettings[1];
-			}		
+				timer+=1;
+			}
+			// because you cant pass variables in by refreunce just get new values
+			// from returing and array - 
+			boolean[] runGameSettings = board.rerunGame();
+			decision = runGameSettings[0];
+			isgameOver = runGameSettings[1];
+		}		
 					
-		}
+
 	}
 	private static boolean runGame(Board board, Player player1, Player player2, Ball ball, int count, String name1, String name2) {
 		//Checks to see if game is over based on time
 		boolean isgameOver = board.gameOver(count);		
-  	StdDraw.text(-1.6, 0.9, name1);
+		StdDraw.text(-1.6, 0.9, name1);
 		StdDraw.text(1.6, 0.9, name2);
 		board.drawEverything(player1, player2, ball, count);		
 		board.powerUpCheckAndDraw(player1, player2, ball);
