@@ -31,15 +31,12 @@ public class Soccer {
 				}
 				timer+=1;
 			}
-			decision = false;
 			// because you cant pass variables in by refreunce just get new values
-			// from returing and array
-			boolean[] runGameSettings = board.rerunGame(decision, isgameOver);
+			// from returing and array - 
+			boolean[] runGameSettings = board.rerunGame();
 			decision = runGameSettings[0];
 			isgameOver = runGameSettings[1];
-		}
-
-			
+		}		
 					
 }
 
