@@ -1,6 +1,8 @@
 package test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,6 +34,15 @@ class playerTests {
 	void testGravity(){
 		player.gravity();
 		assertEquals(player.velocityY, -0.0005);
+	}
+	@Test
+	void testRandom() {
+		HashSet<Integer>  nums = new HashSet<Integer>();
+		for(int i = 1; i < 10; i++) {
+			nums.add(i);
+		}
+		int randomNumber = player.random();
+		assertEquals(true, nums.contains(randomNumber));
 	}
 	
 	@Test

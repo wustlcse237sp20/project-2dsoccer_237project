@@ -42,6 +42,18 @@ public class Board {
 		StdDraw.setYscale(-1,1);
 	}
 	/**
+	 * Draws everything necessary to run the game
+	 */
+	public void drawEverything(Player player1, Player player2, Ball ball, int count) {
+		drawGround();
+		drawTime(count);
+		drawScore(player1,player2);
+		drawPlayers(player1,player2);
+		drawBall(ball);
+		drawGoals();
+	}
+
+	/**
 	 * gets the time based on the current timer time
 	 * @params the current timer time
 	 * @return the beginning part of the time
@@ -98,7 +110,11 @@ public class Board {
 		String fullScore = playerOneScore + " - " + playerTwoScore;
 		StdDraw.text(0,.95,fullScore);
 	}
-	
+	/**
+	 * Imitaties a power up based on the player
+	 * @params player1 to be powered up
+	 * @params player2 to be powered up
+	*/
 	public void drawPowerUp(Player p1, Player p2) {
 		StdDraw.setPenColor(Color.RED);
 		Font font = new Font("Arial", Font.BOLD, 25);
@@ -128,22 +144,29 @@ public class Board {
 		}
 	}
 	/**
-	 * Determines whether to rerun game based on the input given to the console.
+	 * Determines whether to rerun game based on the key clicked whether that be a y or n
 	*/
 	public boolean[] rerunGame() {
 		boolean[] results = new boolean[2];
-		System.out.println("Would you like to play again?(y/n)");
-		Scanner in = new Scanner(System.in);
-		String answer = in.nextLine().trim().toLowerCase();
-		if(answer.equals("y")) {
-			results[0] = true;
-			results[1] = false;
-		}
-		if(answer.equals("n")) {
-			results[0] = false;
-			results[1] = true;
-			drawFinalScreen();
-			
+		boolean loop = true;
+		while(loop) {
+			//(0,10) corresponds to 'y'
+			if(ArcadeKeys.isKeyPressed(0, 10)) {
+				results[0] = true;
+				results[1] = false;
+				loop = false;
+				StdDraw.pause(500);
+				break;
+			}
+			//(2,10) corresponds to 'n'
+			if(ArcadeKeys.isKeyPressed(2, 10)) {
+				results[0] = false;
+				results[1] = true;
+				drawFinalScreen();
+				loop = false;
+				StdDraw.pause(500);
+				break;
+			}
 		}
 		return results;
 	}
@@ -173,7 +196,7 @@ public class Board {
 		StdDraw.text(0,0,"Game Over");
 		Font font2 = new Font("Arial", Font.PLAIN, 32);
 		StdDraw.setFont(font2);
-		StdDraw.text(0,-0.2,"Type y/n in console to continue or end game");
+		StdDraw.text(0,-0.2,"Click y/n to continue or end game");
 		
 	}
 	/**
@@ -284,8 +307,12 @@ public class Board {
 			player2.velocityY = 0;
 		}
 	}
-	
-	public void powerUpCheck(Player player1, Player player2, Ball ball) {
+	/**
+	 * If a player has two goals then they are given a power up. Other players controls get reversed.
+	 * @param Player 1 to be powered up 
+     * @param Player 2 to be powered up
+	*/
+	public void powerUpCheckAndDraw(Player player1, Player player2, Ball ball) {
 		if(player1.getScore() == 2) {
 			player1.powerUp = true;
 			player2.powerDown = true;
@@ -302,6 +329,7 @@ public class Board {
 			player2.powerUp = false;
 			player1.powerDown = false;
 		}
+		drawPowerUp(player1, player2);
 	}
 
 }

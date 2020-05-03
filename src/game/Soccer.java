@@ -41,22 +41,14 @@ public class Soccer {
 	}
 
 	private static boolean runGame(Board board, Player player1, Player player2, Ball ball, int count) {
-		boolean isgameOver;
-		board.drawGround();
-		board.drawTime(count);
-		board.drawScore(player1,player2);
 		//Checks to see if game is over based on time
-		isgameOver = board.gameOver(count, player1, player2);
-		board.drawGoals();
-		board.drawPlayers(player1,player2);
-		board.drawBall(ball);
-		board.drawGoals();
-		board.powerUpCheck(player1, player2, ball);
-		board.drawPowerUp(player1, player2);
-		board.movePlayers(player1,player2);
+		boolean isgameOver = board.gameOver(count);		
+		board.drawEverything(player1, player2, ball, count);		
+		board.powerUpCheckAndDraw(player1, player2, ball);
 		ball.playerCollision(player1, player2);
 		player1.setBallDist(player1.calcBallDist(ball));
 		player2.setBallDist(player2.calcBallDist(ball));
+		board.movePlayers(player1,player2);
 		board.moveBall(ball);
 		player1.kickBall(ball);
 		player2.kickBall(ball);

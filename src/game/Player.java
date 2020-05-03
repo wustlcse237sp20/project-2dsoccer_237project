@@ -1,5 +1,6 @@
 package game;
 import java.awt.Color;
+import java.util.Random;
 
 import sedgewick.ArcadeKeys;
 import sedgewick.StdDraw;
@@ -19,46 +20,9 @@ public class Player {
 		private int score;
 		public boolean powerUp = false;
 		public boolean powerDown = false; //true if the opposing player has a powerUp
-		private int a = this.random(0);
-		private int b = this.random(0);
+		private int player1Skin = this.random();
+		private int player2Skin = this.random();
 		
-		public int random(int z){
-			int a = 0;
-			double random = Math.random();
-			if(random>=.9) {
-				z = 9;
-			}
-			else if(random>=.8) {
-				z = 9;
-			}
-			else if(random>=.7) {
-				z = 8;
-			}
-			else if(random>=.6) {
-				z = 7;
-			}
-			else if(random>=.5) {
-				z = 6;
-			}
-			else if(random>=.4) {
-				z = 5;
-			}
-			else if(random>=.3) {
-				z = 4;
-			}
-			else if(random>=.2) {
-				z = 3;
-			}
-			else if(random>=.1) {
-				z = 2;
-			}
-			else {
-				z = 1;
-			}
-			return z;
-		}
-
-
 		public Player(double x, double y, int player) {
 			this.posX = x;
 			this.posY = y;
@@ -66,6 +30,16 @@ public class Player {
 			this.startPosY = y;
 			this.player = player;
 		}
+		/**
+		 * Ensures that random number generated is between 1-9
+		 * @return a number between 1-9 to be later used for character selection.
+		 */
+		public int random(){
+			Random rn = new Random();
+			int randomNum = rn.nextInt((9-1) + 1) + 1;
+			return randomNum;
+		}
+
 		/**
 		 * gets the score of the player
 		 * @return the points the player has
@@ -87,7 +61,7 @@ public class Player {
 		}
 		
 		/**
-		 * draws players
+		 * draws players 1 and picks a character skin  based on a random value
 		 */
 		public void drawPlayer1() {
 			if(this.powerDown == true) { //red color indicates the controls are reversed.
@@ -96,13 +70,12 @@ public class Player {
 			else {
 				StdDraw.setPenColor(StdDraw.BLACK);
 			}
-		//	StdDraw.filledRectangle(this.posX, this.posY, this.width/2, this.height/2);
-
-			StdDraw.picture(this.posX, this.posY, "character" + a + " copy.png", this.width, this.height);
-			
-		
+			StdDraw.picture(this.posX, this.posY, "character" + player1Skin + " copy.png", this.width, this.height);
 			StdDraw.setPenColor(StdDraw.BLACK);
 		}
+		/**
+		 * draws players 2 and picks a character skin  based on a random value
+		 */
 		public void drawPlayer2() {
 			if(this.powerDown == true) { //red color indicates the controls are reversed.
 				StdDraw.setPenColor(StdDraw.RED);
@@ -110,17 +83,15 @@ public class Player {
 			else {
 				StdDraw.setPenColor(StdDraw.BLACK);
 			}
-			
-			if(a==b) {
-				if(b==10) {
-					b--;
+			if(player1Skin==player2Skin) {
+				if(player2Skin==9) {
+					player2Skin--;
 				}
 				else {
-					b++;
+					player2Skin++;
 				}
 			}
-			StdDraw.picture(this.posX, this.posY, "character" + b + ".png", this.width, this.height);
-			
+			StdDraw.picture(this.posX, this.posY, "character" + player2Skin + ".png", this.width, this.height);	
 			StdDraw.setPenColor(StdDraw.BLACK);
 		}
 		/**
@@ -242,58 +213,6 @@ public class Player {
 			}
 			return "Invalid Player";
 		}
-//		
-//		/**
-//		 * Determines how to move left player based on button pressed and posX or posY 
-//	     * @param indication of which button was pressed
-//		*/
-//		
-//		public void moveLeftPlayer(String buttonPressed) {
-//			if ((buttonPressed == "a") && this.posX>-1.99) {
-//				//key pressed changes velocity
-//				this.velocityX -= 0.1;
-//			}
-//			else if((buttonPressed == "a") && this.posX<1.99) {
-//				this.velocityX = 0;
-//			}
-//			if ((buttonPressed == "d") && this.posX<-0.11) {
-//				this.velocityX += 0.1;
-//			}
-//			else if((buttonPressed == "d") && this.posX>-0.11) {
-//				this.velocityX = 0;
-//			}
-//			if ((buttonPressed == "w") && this.posY <= -0.95) {
-//				//a jump starts you off at a fixed velocity, if you are currently on the ground
-//				this.velocityY = 0.05;
-//	
-//			}
-//			System.out.println(this.velocityX);
-//		}
-//		/**
-//		 * Determines how to move right player based on button pressed and posX or posY 
-//	     * @param indication of which button was pressed
-//		*/
-//		public void moveRightPlayer(String buttonPressed) {
-//			if ((buttonPressed == "left") && this.posX > 0.21) {
-//				//key pressed changes velocity
-//				this.velocityX -= 0.1;
-//			}
-//			else if((buttonPressed == "left") && this.posX>0.21) {
-//				this.velocityX = 0;
-//			}
-//			if ((buttonPressed == "right") && this.posX < 1.99) {
-//				this.velocityX += 0.1;
-//			}
-//			else if ((buttonPressed == "right") && this.posX>1.99) {
-//				this.velocityX = 0;
-//			}
-//			if ((buttonPressed == "up") && this.posY <= -0.95) {
-//				//a jump starts you off at a fixed velocity, if you are currently on the ground
-//				this.velocityY = 0.05;
-//			}
-//			
-//		}
-
 		/**
 		 * updates the position of a player by adding to its x position and y position and sets x and y velocity
 	     * @param indication of which button was pressed
@@ -313,8 +232,7 @@ public class Player {
 			if(posY > -0.95) {
 				this.velocityY = this.velocityY - 0.0000003;
 			}
-			this.velocityX = this.velocityX * 0.8;
-			
+			this.velocityX = this.velocityX * 0.8;		
 		}
 		
 		/**
@@ -344,8 +262,7 @@ public class Player {
 		}
 		/**
 		 * Resets the players position after a goal is scored.
-		*/
-		
+		*/	
 		public void resetPos() {
 			if(player == 0) {
 				this.posX = -1.8;
