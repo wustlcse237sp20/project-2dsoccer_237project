@@ -1,21 +1,34 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
+import sedgewick.ArcadeKeys;
 import sedgewick.StdDraw;
 
 public class Board {
-	
+	// The variable to hold who wins the game at the end of time.
+	private String winner;
 	/**
 	 * Starts by setting up the splash screen, which then leads to our main screen after the user presses the mouse
 	 */
 	public void setupScreen() {
-		StdDraw.setCanvasSize(1364,768);
+		StdDraw.setCanvasSize(1364,682);
 		StdDraw.setPenColor(Color.black);
 		StdDraw.filledRectangle(0.5, 0.5, 682, 384);
 		StdDraw.setPenColor(Color.white);
+		Font font = new Font("Arial", Font.BOLD, 60);
+		StdDraw.setFont(font);
 		StdDraw.text(0.5, 0.8, "2-D Soccer");
-		StdDraw.text(0.5, 0.4, "Right Click to Continue");
+		font = new Font("Arial", Font.PLAIN, 16);
+		StdDraw.setFont(font);
+		StdDraw.text(0.5, 0.6, "Move left player with keys : A   W   D");
+		StdDraw.text(0.5, 0.55, "Left player, kick ball with key :      S    ");
+		StdDraw.text(0.5, 0.45, "Move right player with keys: LEFT  UP   RIGHT");
+		StdDraw.text(0.5, 0.4, "Right player, kick ball with key :      DOWN    ");
+		StdDraw.text(0.5, 0.3, "Right Click to Continue");
 		StdDraw.show(0);
 		StdDraw.picture(0.5,0.5,"background.png");
 		while(true) {
@@ -25,26 +38,262 @@ public class Board {
 			}
 		}
 		// sets up new scale so when players are drawn.
-		StdDraw.setScale(-1,1);
+		StdDraw.setXscale(-2,2);
+		StdDraw.setYscale(-1,1);
+	}
+	/**
+	 * gets the time based on the current timer time
+	 * @params the current timer time
+	 * @return the beginning part of the time
+	*/
+	public String getTime(int timer) {
+		if(timer < 10 && timer >= 0) {
+			return "00:0";
+		}else if(timer < 60 && timer >= 10) {
+			return "00:";
+		}else if(timer >= 60){
+			return "01:00";
+		}
+		return "Invalid time";
+		
+	}
+	/**
+	 * Constructs the full time that should be displayed
+	 * @params the current timer time
+	 * @return the time that should be displayed
+	*/
+	public String Timer(int timer) {
+		String time = getTime(timer);
+		String fullTime = time + timer;
+		if(timer < 0) {
+			return "Can't display time";
+		}else if(timer >= 60) {
+			return time;
+		}
+		return fullTime;
+	}
+	/**
+	 * draws the time that should be displayed on the screen with the field.
+	 * @params the current timer time
+	*/
+	public void drawTime(int timer) {
+		StdDraw.setPenColor(Color.BLACK);
+		Font font = new Font("Arial",Font.PLAIN, 16);
+		StdDraw.setFont(font);
+		String time = Timer(timer);
+		StdDraw.text(0, .85, time);
+	}
+	/**
+	 * draws the current score based on the number of points the player has.
+	 * @params player1 points to be drawn
+	 * @params player2 poitns to be drawn.
+	*/
+	public void drawScore(Player player1, Player player2) {
+		StdDraw.setPenColor(Color.BLACK);
+		Font font = new Font("Arial", Font.BOLD, 48);
+		StdDraw.setFont(font);
+		String playerOneScore = String.valueOf(player1.getScore());
+		String playerTwoScore = String.valueOf(player2.getScore());
+		this.winner = determineWinner(player1, player2);
+		String fullScore = playerOneScore + " - " + playerTwoScore;
+		StdDraw.text(0,.95,fullScore);
 	}
 	
+	public void drawPowerUp(Player p1, Player p2) {
+		StdDraw.setPenColor(Color.RED);
+		Font font = new Font("Arial", Font.BOLD, 25);
+		StdDraw.setFont(font);
+		if(p1.powerUp == true) {
+			StdDraw.text(-2, 0.4, "-> <-");
+			StdDraw.text(-2, 0.3, "ATTACK");
+		}
+		if(p2.powerUp == true) {
+			StdDraw.text(2, 0.4, "-> <-");
+			StdDraw.text(2, 0.3, "ATTACK");
+		}
+	}
+	
+	/**
+	 * determines the winner based on who has most amount of points, or tie otherwise
+	 * @params player1 points 
+	 * @params player2 poitns 
+	*/
+	public String determineWinner(Player player1, Player player2) {
+		if(player1.getScore() > player2.getScore()) {
+			return "Player 1 wins";
+		}else if(player2.getScore() > player1.getScore()) {
+			return "Player 2 wins";
+		}else {
+			return "Tied Game";
+		}
+	}
+	/**
+	 * Determines whether to rerun game based on the input given to the console.
+	*/
+	public boolean[] rerunGame() {
+		boolean[] results = new boolean[2];
+//		System.out.println("Would you like to play again?(y/n)");
+//		Scanner in = new Scanner(System.in);
+//		String answer = in.nextLine().trim().toLowerCase();
+//		if(answer.equals("y")) {
+//			results[0] = true;
+//			results[1] = false;
+//		}
+//		if(answer.equals("n")) {
+//			results[0] = false;
+//			results[1] = true;
+//			drawFinalScreen();
+//			
+//		}
+		boolean loop = true;
+		while(loop) {
+			//(0,10) corresponds to 'y'
+			if(ArcadeKeys.isKeyPressed(0, 10)) {
+				results[0] = true;
+				results[1] = false;
+				loop = false;
+				StdDraw.pause(500);
+				break;
+			}
+			//(2,10) corresponds to 'n'
+			if(ArcadeKeys.isKeyPressed(2, 10)) {
+				results[0] = false;
+				results[1] = true;
+				drawFinalScreen();
+				loop = false;
+				StdDraw.pause(500);
+				break;
+			}
+		}
+		return results;
+	}
+	/**
+	 * Draw the final screen, shown when the user doesn't want to continute the round.
+	*/
+	public void drawFinalScreen() {
+		StdDraw.setCanvasSize(1364,682);
+		StdDraw.setPenColor(Color.black);
+		StdDraw.filledRectangle(0.5, 0.5, 682, 384);
+		StdDraw.setPenColor(Color.white);
+		Font font = new Font("Arial", Font.BOLD, 60);
+		StdDraw.setFont(font);
+		StdDraw.text(0.5, 0.5, "Game Over");
+		font = new Font("Arial", Font.PLAIN, 16);
+		StdDraw.setFont(font);
+		StdDraw.text(0.5, 0.4, this.winner);
+		StdDraw.show(0);
+	}
+	/**
+	 * Draw the screen to play gain asking to type in the console.
+	*/
+	public void drawPlayAgain() {
+		StdDraw.setPenColor(Color.BLACK);
+		Font font = new Font("Arial", Font.BOLD, 60);
+		StdDraw.setFont(font);
+		StdDraw.text(0,0,"Game Over");
+		Font font2 = new Font("Arial", Font.PLAIN, 32);
+		StdDraw.setFont(font2);
+		StdDraw.text(0,-0.2,"Cluck y/n to continue or end game");
+		
+	}
+	/**
+	 * Based on the time decides whether game is over or not.
+	 * @params the current timer time
+	 * @return boolean indicating if game is over or not
+	*/
+	public boolean gameOver(int timer, Player player1, Player player2) {
+		if(timer >= 60) {
+			drawPlayAgain();
+			return true;
+		}
+		return false;
+	}
 	/**
 	 * draws two sets of goals (one on each side)
 	*/
 	public void drawGoals() {
 		StdDraw.filledRectangle(0,-0.95,0.01,.2);
-		StdDraw.filledRectangle(-1.0, 0.4, 0.1, 0.8); 
-		StdDraw.filledRectangle(1.0,0.4,0.1,0.8);
+		StdDraw.filledRectangle(-2.0, 0.4, 0.2, 0.8); 
+		StdDraw.filledRectangle(2.0,0.4,0.2,0.8);
+		
+		//drawing goal nets
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.setPenRadius(0.008);
+		//left goal
+		StdDraw.line(-2.2, -1.1, -1.8, -0.4);
+		StdDraw.line(-2.15, -1.1, -1.8, -0.5);
+		StdDraw.line(-2.1, -1.1, -1.8, -0.6);
+		StdDraw.line(-2.05, -1.1, -1.8, -0.7);
+		StdDraw.line(-2, -1.1, -1.8, -0.8);
+		StdDraw.line(-1.95, -1.1, -1.8, -0.9);
+		StdDraw.line(-2.25, -1.1, -1.85, -0.4);
+		StdDraw.line(-2.3, -1.1, -1.9, -0.4);
+		StdDraw.line(-2.35, -1.1, -1.95, -0.4);
+		StdDraw.line(-2.4, -1.1, -2, -0.4);
+		StdDraw.line(-2.45, -1.1, -2.05, -0.4);
+		StdDraw.line(-2.5, -1.1, -2.1, -0.4);
+		StdDraw.line(-2.55, -1.1, -2.15, -0.4);
+		//lines opposite direction
+		StdDraw.line(-2.2, -0.4, -1.8, -1.1);
+		StdDraw.line(-2.2, -0.5, -1.85, -1.1);
+		StdDraw.line(-2.2, -0.6, -1.9, -1.1);
+		StdDraw.line(-2.2, -0.7, -1.95, -1.1);
+		StdDraw.line(-2.2, -0.8, -2, -1.1);
+		StdDraw.line(-2.2, -0.9, -2.05, -1.1);
+		StdDraw.line(-2.2, -1, -2.1, -1.1);
+		StdDraw.line(-2.15, -0.4, -1.8, -1);
+		StdDraw.line(-2.1, -0.4, -1.8, -0.9);
+		StdDraw.line(-2.05, -0.4, -1.8, -0.8);
+		StdDraw.line(-2, -0.4, -1.8, -0.7);
+		StdDraw.line(-1.95, -0.4, -1.8, -0.6);
+		StdDraw.line(-1.9, -0.4, -1.8, -0.5);
+		
+		//right goal
+		StdDraw.line(2.2, -1.1, 1.8, -0.4);
+		StdDraw.line(2.15, -1.1, 1.8, -0.5);
+		StdDraw.line(2.1, -1.1, 1.8, -0.6);
+		StdDraw.line(2.05, -1.1, 1.8, -0.7);
+		StdDraw.line(2, -1.1, 1.8, -0.8);
+		StdDraw.line(1.95, -1.1, 1.8, -0.9);
+		StdDraw.line(2.25, -1.1, 1.85, -0.4);
+		StdDraw.line(2.3, -1.1, 1.9, -0.4);
+		StdDraw.line(2.35, -1.1, 1.95, -0.4);
+		StdDraw.line(2.4, -1.1, 2, -0.4);
+		StdDraw.line(2.45, -1.1, 2.05, -0.4);
+		StdDraw.line(2.5, -1.1, 2.1, -0.4);
+		StdDraw.line(2.55, -1.1, 2.15, -0.4);
+		//lines opposite direction
+		StdDraw.line(2.2, -0.4, 1.8, -1.1);
+		StdDraw.line(2.2, -0.5, 1.85, -1.1);
+		StdDraw.line(2.2, -0.6, 1.9, -1.1);
+		StdDraw.line(2.2, -0.7, 1.95, -1.1);
+		StdDraw.line(2.2, -0.8, 2, -1.1);
+		StdDraw.line(2.2, -0.9, 2.05, -1.1);
+		StdDraw.line(2.2, -1, 2.1, -1.1);
+		StdDraw.line(2.15, -0.4, 1.8, -1);
+		StdDraw.line(2.1, -0.4, 1.8, -0.9);
+		StdDraw.line(2.05, -0.4, 1.8, -0.8);
+		StdDraw.line(2, -0.4, 1.8, -0.7);
+		StdDraw.line(1.95, -0.4, 1.8, -0.6);
+		StdDraw.line(1.9, -0.4, 1.8, -0.5);
+		
 	}
-	
+	/**
+	 * draws the ground
+	*/
+	public void drawGround() {
+		StdDraw.setPenColor(Color.green);
+		StdDraw.filledRectangle(0, -1.1, 2.2, 0.05);
+		StdDraw.setPenColor(Color.black);
+	}
 	/**
 	 * draws each individual player on the screen 
 	 * @param Player 1 to be drawn
      * @param Player 2 to be drawn
 	*/
 	public void drawPlayers(Player player1, Player player2) {
-		player1.draw();
-		player2.draw();
+		player1.drawPlayer1();
+		player2.drawPlayer2();
 	}
 	/**
 	 * moves players based on the key that is pressed. Movement implementation is in Player.java
@@ -54,6 +303,21 @@ public class Board {
 	public void movePlayers(Player player1, Player player2) {
 		player1.move();
 		player2.move();
+	}
+	/**
+	 * draws the ball on the screen
+	 * @params the ball to be drawn.
+	*/
+	
+	public void drawBall(Ball ball) {
+		ball.draw();
+	}
+	/**
+	 * moves the ball on the screen
+	 * @params the ball to be moved
+	*/
+	public void moveBall(Ball ball) {
+		ball.move();
 	}
 	/**
 	 * implements a jumping movement based on the location of each player.
@@ -77,6 +341,24 @@ public class Board {
 			player2.velocityY = 0;
 		}
 	}
+	
+	public void powerUpCheck(Player player1, Player player2, Ball ball) {
+		if(player1.getScore() == 2) {
+			player1.powerUp = true;
+			player2.powerDown = true;
+		}
+		if(player2.getScore() == 2) {
+			player2.powerUp = true;
+			player1.powerDown = true;
+		}
+		else if(player1.getScore() > 2) {
+			player1.powerUp = false;
+			player2.powerDown = false;
+		}
+		else if(player2.getScore() > 2) {
+			player2.powerUp = false;
+			player1.powerDown = false;
+		}
+	}
 
 }
-
