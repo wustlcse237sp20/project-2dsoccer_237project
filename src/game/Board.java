@@ -173,63 +173,26 @@ public class Board {
 		//drawing goal nets
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.setPenRadius(0.008);
-		//left goal
-		StdDraw.line(-2.2, -1.1, -1.8, -0.4);
-		StdDraw.line(-2.15, -1.1, -1.8, -0.5);
-		StdDraw.line(-2.1, -1.1, -1.8, -0.6);
-		StdDraw.line(-2.05, -1.1, -1.8, -0.7);
-		StdDraw.line(-2, -1.1, -1.8, -0.8);
-		StdDraw.line(-1.95, -1.1, -1.8, -0.9);
-		StdDraw.line(-2.25, -1.1, -1.85, -0.4);
-		StdDraw.line(-2.3, -1.1, -1.9, -0.4);
-		StdDraw.line(-2.35, -1.1, -1.95, -0.4);
-		StdDraw.line(-2.4, -1.1, -2, -0.4);
-		StdDraw.line(-2.45, -1.1, -2.05, -0.4);
-		StdDraw.line(-2.5, -1.1, -2.1, -0.4);
-		StdDraw.line(-2.55, -1.1, -2.15, -0.4);
-		//lines opposite direction
-		StdDraw.line(-2.2, -0.4, -1.8, -1.1);
-		StdDraw.line(-2.2, -0.5, -1.85, -1.1);
-		StdDraw.line(-2.2, -0.6, -1.9, -1.1);
-		StdDraw.line(-2.2, -0.7, -1.95, -1.1);
-		StdDraw.line(-2.2, -0.8, -2, -1.1);
-		StdDraw.line(-2.2, -0.9, -2.05, -1.1);
-		StdDraw.line(-2.2, -1, -2.1, -1.1);
-		StdDraw.line(-2.15, -0.4, -1.8, -1);
-		StdDraw.line(-2.1, -0.4, -1.8, -0.9);
-		StdDraw.line(-2.05, -0.4, -1.8, -0.8);
-		StdDraw.line(-2, -0.4, -1.8, -0.7);
-		StdDraw.line(-1.95, -0.4, -1.8, -0.6);
-		StdDraw.line(-1.9, -0.4, -1.8, -0.5);
 		
-		//right goal
-		StdDraw.line(2.2, -1.1, 1.8, -0.4);
-		StdDraw.line(2.15, -1.1, 1.8, -0.5);
-		StdDraw.line(2.1, -1.1, 1.8, -0.6);
-		StdDraw.line(2.05, -1.1, 1.8, -0.7);
-		StdDraw.line(2, -1.1, 1.8, -0.8);
-		StdDraw.line(1.95, -1.1, 1.8, -0.9);
-		StdDraw.line(2.25, -1.1, 1.85, -0.4);
-		StdDraw.line(2.3, -1.1, 1.9, -0.4);
-		StdDraw.line(2.35, -1.1, 1.95, -0.4);
-		StdDraw.line(2.4, -1.1, 2, -0.4);
-		StdDraw.line(2.45, -1.1, 2.05, -0.4);
-		StdDraw.line(2.5, -1.1, 2.1, -0.4);
-		StdDraw.line(2.55, -1.1, 2.15, -0.4);
-		//lines opposite direction
-		StdDraw.line(2.2, -0.4, 1.8, -1.1);
-		StdDraw.line(2.2, -0.5, 1.85, -1.1);
-		StdDraw.line(2.2, -0.6, 1.9, -1.1);
-		StdDraw.line(2.2, -0.7, 1.95, -1.1);
-		StdDraw.line(2.2, -0.8, 2, -1.1);
-		StdDraw.line(2.2, -0.9, 2.05, -1.1);
-		StdDraw.line(2.2, -1, 2.1, -1.1);
-		StdDraw.line(2.15, -0.4, 1.8, -1);
-		StdDraw.line(2.1, -0.4, 1.8, -0.9);
-		StdDraw.line(2.05, -0.4, 1.8, -0.8);
-		StdDraw.line(2, -0.4, 1.8, -0.7);
-		StdDraw.line(1.95, -0.4, 1.8, -0.6);
-		StdDraw.line(1.9, -0.4, 1.8, -0.5);
+		//left goal
+		for (double i = 0; i < 0.3; i += 0.05) {
+			//left goal
+			StdDraw.line(-2.2+i, -1.1, -1.8, -0.4-(2*i));
+			StdDraw.line(-2.15+i, -0.4, -1.8, -1+(2*i));
+			
+			//right goal
+			StdDraw.line(2.2-i, -1.1, 1.8, -0.4-(2*i));
+			StdDraw.line(2.15-i, -0.4, 1.8, -1+(2*i));
+		}
+		for(double i = 0; i<0.35; i+=0.05) {
+			//left goal
+			StdDraw.line(-2.25-i, -1.1, -1.85-i, -0.4);
+			StdDraw.line(-2.2, -0.4-(2*i), -1.8-i, -1.1);
+			
+			//right goal
+			StdDraw.line(2.25+i, -1.1, 1.85+i, -0.4);
+			StdDraw.line(2.2, -0.4-(2*i), 1.8+i, -1.1);
+		}
 		
 	}
 	/**
