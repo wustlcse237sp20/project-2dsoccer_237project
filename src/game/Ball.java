@@ -35,8 +35,7 @@ public class Ball {
 	 */
 	
 	public void draw() {
-		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.filledCircle(this.posX, this.posY, this.radius);
+		StdDraw.picture(this.posX, this.posY, "ball.png", this.radius*2, this.radius*2);
 		StdDraw.setPenColor(StdDraw.BLACK);
 	}
 	/**
