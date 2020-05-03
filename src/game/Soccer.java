@@ -25,7 +25,7 @@ public class Soccer {
 				while(isgameOver == false) {
 					StdDraw.clear();
 					StdDraw.picture(0,0,"background.png");
-					isgameOver = runGame(board, player1, player2, ball, count);
+					isgameOver = runGame(board, player1, player2, ball, count, player1Name, player2Name);
 					if(timer % 100 == 0) {
 						count++;
 					}
@@ -40,9 +40,11 @@ public class Soccer {
 					
 		}
 	}
-	private static boolean runGame(Board board, Player player1, Player player2, Ball ball, int count) {
+	private static boolean runGame(Board board, Player player1, Player player2, Ball ball, int count, String name1, String name2) {
 		boolean isgameOver;
 		board.drawGround();
+		StdDraw.text(-1.6, 0.9, name1);
+		StdDraw.text(1.6, 0.9, name2);
 		board.drawTime(count);
 		board.drawScore(player1,player2);
 		//Checks to see if game is over based on time
