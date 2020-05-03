@@ -105,6 +105,21 @@ public class Board {
 		String fullScore = playerOneScore + " - " + playerTwoScore;
 		StdDraw.text(0,.95,fullScore);
 	}
+	
+	public void drawPowerUp(Player p1, Player p2) {
+		StdDraw.setPenColor(Color.RED);
+		Font font = new Font("Arial", Font.BOLD, 25);
+		StdDraw.setFont(font);
+		if(p1.powerUp == true) {
+			StdDraw.text(-2, 0.4, "-> <-");
+			StdDraw.text(-2, 0.3, "ATTACK");
+		}
+		if(p2.powerUp == true) {
+			StdDraw.text(2, 0.4, "-> <-");
+			StdDraw.text(2, 0.3, "ATTACK");
+		}
+	}
+	
 	/**
 	 * determines the winner based on who has most amount of points, or tie otherwise
 	 * @params player1 points 

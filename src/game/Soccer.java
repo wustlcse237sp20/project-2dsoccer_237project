@@ -41,6 +41,7 @@ public class Soccer {
 		board.drawBall(ball);
 		board.drawGoals();
 		board.powerUpCheck(player1, player2, ball);
+		board.drawPowerUp(player1, player2);
 		board.movePlayers(player1,player2);
 		ball.playerCollision(player1, player2);
 		player1.setBallDist(player1.calcBallDist(ball));
