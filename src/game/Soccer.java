@@ -16,11 +16,11 @@ public class Soccer {
 		while(decision == true) {
 			Board board = new Board();
 			board.setupScreen();
-			Player player1 = new Player(-.5, -1, 0); //Not calling "Player" causes static/non static error
-			Player player2 = new Player(0.5, -1, 1);
+			Player player1 = new Player(-1, -0.95, 0); //Not calling "Player" causes static/non static error
+			Player player2 = new Player(1, -0.95, 1);
 			Ball ball = new Ball(0,0.5);
 			int timer = 0;
-			int count = 57;
+			int count = 0;
 			boolean isgameOver = false;
 			while(isgameOver == false) {
 				StdDraw.clear();
@@ -38,7 +38,7 @@ public class Soccer {
 			isgameOver = runGameSettings[1];
 		}		
 					
-}
+	}
 
 	private static boolean runGame(Board board, Player player1, Player player2, Ball ball, int count) {
 		boolean isgameOver;
@@ -50,6 +50,9 @@ public class Soccer {
 		board.drawGoals();
 		board.drawPlayers(player1,player2);
 		board.drawBall(ball);
+		board.drawGoals();
+		board.powerUpCheck(player1, player2, ball);
+		board.drawPowerUp(player1, player2);
 		board.movePlayers(player1,player2);
 		ball.playerCollision(player1, player2);
 		player1.setBallDist(player1.calcBallDist(ball));
@@ -64,6 +67,5 @@ public class Soccer {
 		board.handleJumping(player1, player2);
 		return isgameOver;
 	}
-	
 
 }

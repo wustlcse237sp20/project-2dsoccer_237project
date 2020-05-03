@@ -98,6 +98,21 @@ public class Board {
 		String fullScore = playerOneScore + " - " + playerTwoScore;
 		StdDraw.text(0,.95,fullScore);
 	}
+	
+	public void drawPowerUp(Player p1, Player p2) {
+		StdDraw.setPenColor(Color.RED);
+		Font font = new Font("Arial", Font.BOLD, 25);
+		StdDraw.setFont(font);
+		if(p1.powerUp == true) {
+			StdDraw.text(-2, 0.4, "-> <-");
+			StdDraw.text(-2, 0.3, "ATTACK");
+		}
+		if(p2.powerUp == true) {
+			StdDraw.text(2, 0.4, "-> <-");
+			StdDraw.text(2, 0.3, "ATTACK");
+		}
+	}
+	
 	/**
 	 * determines the winner based on who has most amount of points, or tie otherwise
 	 * @params player1 points 
@@ -180,6 +195,68 @@ public class Board {
 		StdDraw.filledRectangle(0,-0.95,0.01,.2);
 		StdDraw.filledRectangle(-2.0, 0.4, 0.2, 0.8); 
 		StdDraw.filledRectangle(2.0,0.4,0.2,0.8);
+		
+		//drawing goal nets
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.setPenRadius(0.008);
+		//left goal
+		StdDraw.line(-2.2, -1.1, -1.8, -0.4);
+		StdDraw.line(-2.15, -1.1, -1.8, -0.5);
+		StdDraw.line(-2.1, -1.1, -1.8, -0.6);
+		StdDraw.line(-2.05, -1.1, -1.8, -0.7);
+		StdDraw.line(-2, -1.1, -1.8, -0.8);
+		StdDraw.line(-1.95, -1.1, -1.8, -0.9);
+		StdDraw.line(-2.25, -1.1, -1.85, -0.4);
+		StdDraw.line(-2.3, -1.1, -1.9, -0.4);
+		StdDraw.line(-2.35, -1.1, -1.95, -0.4);
+		StdDraw.line(-2.4, -1.1, -2, -0.4);
+		StdDraw.line(-2.45, -1.1, -2.05, -0.4);
+		StdDraw.line(-2.5, -1.1, -2.1, -0.4);
+		StdDraw.line(-2.55, -1.1, -2.15, -0.4);
+		//lines opposite direction
+		StdDraw.line(-2.2, -0.4, -1.8, -1.1);
+		StdDraw.line(-2.2, -0.5, -1.85, -1.1);
+		StdDraw.line(-2.2, -0.6, -1.9, -1.1);
+		StdDraw.line(-2.2, -0.7, -1.95, -1.1);
+		StdDraw.line(-2.2, -0.8, -2, -1.1);
+		StdDraw.line(-2.2, -0.9, -2.05, -1.1);
+		StdDraw.line(-2.2, -1, -2.1, -1.1);
+		StdDraw.line(-2.15, -0.4, -1.8, -1);
+		StdDraw.line(-2.1, -0.4, -1.8, -0.9);
+		StdDraw.line(-2.05, -0.4, -1.8, -0.8);
+		StdDraw.line(-2, -0.4, -1.8, -0.7);
+		StdDraw.line(-1.95, -0.4, -1.8, -0.6);
+		StdDraw.line(-1.9, -0.4, -1.8, -0.5);
+		
+		//right goal
+		StdDraw.line(2.2, -1.1, 1.8, -0.4);
+		StdDraw.line(2.15, -1.1, 1.8, -0.5);
+		StdDraw.line(2.1, -1.1, 1.8, -0.6);
+		StdDraw.line(2.05, -1.1, 1.8, -0.7);
+		StdDraw.line(2, -1.1, 1.8, -0.8);
+		StdDraw.line(1.95, -1.1, 1.8, -0.9);
+		StdDraw.line(2.25, -1.1, 1.85, -0.4);
+		StdDraw.line(2.3, -1.1, 1.9, -0.4);
+		StdDraw.line(2.35, -1.1, 1.95, -0.4);
+		StdDraw.line(2.4, -1.1, 2, -0.4);
+		StdDraw.line(2.45, -1.1, 2.05, -0.4);
+		StdDraw.line(2.5, -1.1, 2.1, -0.4);
+		StdDraw.line(2.55, -1.1, 2.15, -0.4);
+		//lines opposite direction
+		StdDraw.line(2.2, -0.4, 1.8, -1.1);
+		StdDraw.line(2.2, -0.5, 1.85, -1.1);
+		StdDraw.line(2.2, -0.6, 1.9, -1.1);
+		StdDraw.line(2.2, -0.7, 1.95, -1.1);
+		StdDraw.line(2.2, -0.8, 2, -1.1);
+		StdDraw.line(2.2, -0.9, 2.05, -1.1);
+		StdDraw.line(2.2, -1, 2.1, -1.1);
+		StdDraw.line(2.15, -0.4, 1.8, -1);
+		StdDraw.line(2.1, -0.4, 1.8, -0.9);
+		StdDraw.line(2.05, -0.4, 1.8, -0.8);
+		StdDraw.line(2, -0.4, 1.8, -0.7);
+		StdDraw.line(1.95, -0.4, 1.8, -0.6);
+		StdDraw.line(1.9, -0.4, 1.8, -0.5);
+		
 	}
 	/**
 	 * draws the ground
@@ -195,8 +272,8 @@ public class Board {
      * @param Player 2 to be drawn
 	*/
 	public void drawPlayers(Player player1, Player player2) {
-		player1.draw();
-		player2.draw();
+		player1.drawPlayer1();
+		player2.drawPlayer2();
 	}
 	/**
 	 * moves players based on the key that is pressed. Movement implementation is in Player.java
@@ -242,6 +319,25 @@ public class Board {
 		}
 		else if(player2.getPosY()<-0.95) {
 			player2.velocityY = 0;
+		}
+	}
+	
+	public void powerUpCheck(Player player1, Player player2, Ball ball) {
+		if(player1.getScore() == 2) {
+			player1.powerUp = true;
+			player2.powerDown = true;
+		}
+		if(player2.getScore() == 2) {
+			player2.powerUp = true;
+			player1.powerDown = true;
+		}
+		else if(player1.getScore() > 2) {
+			player1.powerUp = false;
+			player2.powerDown = false;
+		}
+		else if(player2.getScore() > 2) {
+			player2.powerUp = false;
+			player1.powerDown = false;
 		}
 	}
 

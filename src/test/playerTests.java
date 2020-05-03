@@ -31,7 +31,7 @@ class playerTests {
 	@Test
 	void testGravity(){
 		player.gravity();
-		assertEquals(player.velocityY, -0.002);
+		assertEquals(player.velocityY, -0.0005);
 	}
 	
 	@Test
@@ -50,41 +50,11 @@ class playerTests {
 		String whichPlayer = player2.determinePlayer();
 		assertEquals("Invalid Player", whichPlayer);		
 	}
-	@Test
-	void moveLeftPlayerA() {
-		player.moveLeftPlayer("a");
-		assertEquals(-0.1, player.getvelocityX());
-	}
-	@Test
-	void moveLeftPlayerW() {
-		player.moveLeftPlayer("w");
-		assertEquals(0.05, player.getvelocityY());
-	}
-	@Test
-	void moveLeftPlayerD() {
-		player.moveLeftPlayer("d");
-		assertEquals(0.1, player.getvelocityX());
-	}
-	@Test
-	void moveRightPlayerLeft() {
-		player1.moveRightPlayer("left");
-		assertEquals(0.0, player1.getvelocityX());
-	}
-	@Test
-	void moveRightPlayerRight() {
-		player1.moveRightPlayer("right");
-		assertEquals(0.1, player1.getvelocityX());
-	}
-	@Test
-	void moveRightPlayerUp() {
-		player1.moveRightPlayer("up");
-		assertEquals(0.05, player1.getvelocityY());
-	}
 	@Test 
 	void updateVelocity() {
 		player.updateVelocity(1);
 		assertEquals(0, player.getvelocityX());
-		assertEquals(-0.0000005, player.getvelocityY());
+		assertEquals(-0.0000003, player.getvelocityY());
 	}
 	@Test 
 	void updatePosition() {
