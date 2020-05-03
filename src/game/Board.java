@@ -334,7 +334,6 @@ public class Board {
 			player1.powerDown = false;
 		}
 		
-		
 		drawPowerUp(player1, player2);
 	}
 
